@@ -1,0 +1,54 @@
+@import '../../css/base.scss';
+@import '../../css/function.scss';
+
+.logo {
+    background:url('../../images/logo.png') no-repeat center;
+    width: 150px;
+    height: 150px;
+    margin: 50px auto;
+}
+
+.bold {
+    color: $blackColor;
+    font-weight: bold;
+}
+
+.phonePre {
+    color:$grayColor;
+}
+
+.weui-cell__ft {
+    .primary {
+        border-radius: 6px;
+        height: 35px;
+        line-height: 35px;
+        width: 120px;
+        margin:5px;
+        font-size: 16px;
+        outline-style: none;
+        text-decoration: none;
+        text-align: center;
+    }
+    .phoneCodeSelected {
+        background-color:$themeColor;
+        color:white;
+    }
+    .phoneCodeDiabled {
+        background-color: white;
+        color: $grayColor;
+        border-width: 1px;
+        border-color:$grayColor;
+    }
+   
+}
+
+.tip {
+    margin-top:10px;
+    text-align: right;
+    color:$grayColor;
+    font-size: 16px;
+    .protocol {
+        color:$themeColor;
+    }
+}
+

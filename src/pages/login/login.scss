@@ -1,0 +1,107 @@
+@import '../../css/base.scss';
+@import '../../css/function.scss';
+
+.statusBar {
+    width: 100%;
+    height: 20px;
+    background-color: $themeColor;
+}
+
+.logo {
+    background:url('../../images/logo.png') no-repeat center;
+    width: 150px;
+    height: 150px;
+    margin: 50px auto;
+}
+
+@mixin icon($url:'../../images/account.png') {
+    display: inline-block;
+    width: 18px;
+    height: 20px;
+    background: url($url) no-repeat center;
+    background-size: contain;
+    margin-right: 10px;
+    margin-top:5px;
+}
+.account {
+   @include icon('../../images/account.png');
+}
+
+.password {
+    @include icon('../../images/password.png');
+}
+
+.clear {
+    display: inline-block;
+    width: 13px;
+    height: 13px;
+    margin-right: 10px;
+    background: url('../../images/delete.png') no-repeat center;
+    background-size: contain;
+}
+
+.register-area {
+    text-align: center;
+    a {
+        display: inline-block;
+        margin-top:10px;
+        font-size:20px;
+        color:$blackColor;
+        font-weight: bold;
+    }
+}
+
+input[type=checkbox]{
+    visibility: hidden;
+
+}
+
+$iconWidth:18px;
+.selected-icon{
+    border: 1px solid #e1e1e1;
+    width: $iconWidth;
+    height: $iconWidth;
+    border-radius: $iconWidth/2;
+    position: absolute;
+    left:10px;
+    top:50%;
+    margin-top:-$iconWidth/2;
+}
+
+.selected {
+    background: url("../../images/selected.png") no-repeat center;
+    background-size: contain;
+}
+
+$textHeight:18px;
+.selected-text {
+    position: absolute;
+    left: 33px;
+    width: 80px;
+    height: $textHeight;
+    top:50%;
+    margin-top:-$textHeight/2;
+    line-height: $textHeight;
+}
+
+.rememberPwd {
+    position: relative;
+    width: 120px;
+    display: block;
+    height: 100%;
+}
+
+$forgetPwd:18px;
+.forgetPwd {
+    position: absolute;
+    right: 20px;
+    height: $forgetPwd;
+    line-height: $forgetPwd;
+    top:50%;
+    margin-top:-$forgetPwd/2;
+}
+
+.pwd {
+    position: relative;
+    margin-top:10px;
+}
