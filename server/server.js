@@ -10,6 +10,7 @@ const app = express();
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
 const model = require('./model');
+const User = model.getModel('user');
 //使用中间件
 app.use(cookieParser());
 app.use(bodyPaeser.json());
@@ -17,23 +18,46 @@ app.use('/user',userRouter);
 app.use(function(req,res,next){
     if(req.url.startsWith('/user/')
     || req.url.startsWith("/g1/")
-    || req.url.startsWith("/p1/")
     || req.url.startsWith("/d1/")){
         return next();
     }
-    ///static/userProtocol.html
-    console.log(req.url);
-    if(req.url.startsWith('/static/')){
-        console.log(path.resolve('static/userProtocol.html'))
-        return res.sendFile(path.resolve('static/userProtocol.html'));
+    if(req.url.startsWith('/pv1/')){
+        return next();
     }
-
-    return next();
-
+    if(req.url.startsWith('/static/')){
+        const str = '.'+String(req.path)
+        return res.sendFile(path.resolve(str));
+    }
     return res.sendFile(path.resolve('build/index.html'));
 })
 app.use('/',express.static(path.resolve('build')));
 
+app.get('/pv1/home',function(req,res){
+    const {userId} = req.query;
+    const accessToken = req.header('accessToken')
+    console.log(accessToken);
+    console.log(userId);
+    User.findOne({'_id':userId,accessToken},function(err,doc){
+        console.log(err);
+        console.log(doc);
+        if(err){
+            return res.status(500).json('服务器内部错误');
+        }
+        if(!doc){
+           return res.status(401).json('会话过期,请重新登录');
+        }
+        return res.status(200)
+        .json({
+            'banners':[
+                {'link':'http://www.cnlod.net','img':'/static/banner1.jpg'},
+                {'link':'http://www.cnlod.net','img':'/static/banner2.jpg'},
+                {'link':'http://www.cnlod.net','img':'/static/banner3.jpg'}
+            ]
+        });
+        
+    })
+   
+})
 
 
 // 启动app,监听9090

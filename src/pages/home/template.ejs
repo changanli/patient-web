@@ -1,10 +1,25 @@
-<div class="page-index">
-    <div class="title">首页</div>
-    <!-- <div class="weui-btn-area">
-        <button class="weui-btn weui-btn_primary">toast</button>
-    </div> -->
+<!-- 搜索 -->
+<div class="search_nav">
+    <span class="searchIcon"></span>
+    <input type="search" placeholder="医生 疾病 医院 科室" autocomplete="off"> 
+    <a href="" class="message">
+        <img src=<%=(require('../../images/WXX.png'))%> alt="">
+        <span class="messageCount"></span>
+    </a>
 </div>
 
+<!-- 轮播图 -->
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        <% for(var i = 0;i<banners.length;i++){%>
+        <img src="<%=banners[i].img%>" alt=`${banners[i].link}` class="swiper-slide">
+        <% } %>
+    </div>
+    <!-- Add Pagination -->
+    <div class="swiper-pagination"></div>
+</div>
+
+<!-- TabBar -->
 <div class="weui-tabbar">
     <a href="javascript:;" class="weui-tabbar__item weui-bar__item_on">
         <span style="display: inline-block;position: relative;">

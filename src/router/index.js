@@ -15,8 +15,8 @@ export const router_object = {
     'knowledge' : 'knowledge',
     'mine' : 'mine',
     'login': 'login',
-    'register/:title' : 'register',
-    'iframe/:title' : 'iframe',
+    'register' : 'register',
+    'iframe' : 'iframe',
     '*actions': 'login'
 }
 
@@ -56,12 +56,12 @@ export const routes = {
     },
     register(params) {
         import('@/pages/register/controller').then(controller=>{
-            CommonController(controller,{...arguments})
+            CommonController(controller,params)
         })
     },
     iframe(params){
         import('@/pages/iframe/controller').then(controller=>{
-            CommonController(controller,{...arguments})
+            CommonController(controller,params)
         })
     }
 }

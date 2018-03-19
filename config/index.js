@@ -9,7 +9,7 @@ module.exports = {
                 target:'http://localhost:9090',
                 changeOrigin: true
             },
-            '/p1': {
+            '/pv1': {
                 target:'http://localhost:9090',
                 changeOrigin: true
             },

@@ -1,7 +1,7 @@
 import html from './template.ejs'
 import navigation from '@/components/navigation/navigation.ejs';
 import '../register/register.scss'
-import '../../utils/index';
+import {query} from '@/utils';
 import {
 	Toast,
 	Loading
@@ -19,8 +19,9 @@ var Register = Backbone.View.extend({
 		'click .tip a' : 'protocol'
 	},
 
-	initialize(data) {
-		this.title = data[0]; //获取链接中的title
+	initialize() {
+		 //编码两次，在接收处解码一次，可以解决接受到乱码的问题
+		this.title = decodeURI(query('title'));
 		this.count = 60;
 		this.render();
 	},
@@ -32,9 +33,7 @@ var Register = Backbone.View.extend({
 		appRouter.navigate('login', {trigger:true});
 	},
 	protocol(){
-		///static/userProtocol.html
-	
-		appRouter.navigate('iframe/用户协议',{trigger:true,replace:true});
+		appRouter.navigate(`iframe?title=${encodeURI(encodeURI('用户协议'))}&uri=/static/userProtocol.html&backRouter=register?title=${encodeURI(encodeURI('注册'))}`,{trigger:true,replace:true});
 	}
 	,
 	getPhoneCode(){

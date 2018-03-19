@@ -65,6 +65,7 @@
     "redux-thunk": "^2.2.0",
     "socket.io": "^2.0.4",
     "socket.io-client": "^2.0.4",
+    "swiper": "^4.2.0",
     "weui.js": "^1.1.1"
   }
 }

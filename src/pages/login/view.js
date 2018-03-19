@@ -19,6 +19,8 @@ var Login = Backbone.View.extend({
         'click #login' : 'login',
         'click .clear' : 'clear',
         'click input[type=checkbox]' : 'selected',
+        'click .register' : 'register',
+        'click .forgetPwd' : 'forgetPwd'
 	},
 
 	initialize() {
@@ -28,10 +30,10 @@ var Login = Backbone.View.extend({
 	render() {
         this.isRememberPwd = local('rememberPwd')
         this.$el.html(html())
+        let phone = local('phone');
+        $("input[type=tel]").val(phone);
         if(this.isRememberPwd){
-            let phone = local('phone');
             let password = local('password');
-            $("input[type=tel]").val(phone);
             $("input[type=password]").val(password);
             $(".selected-icon").addClass("selected");
         }
@@ -56,7 +58,12 @@ var Login = Backbone.View.extend({
         }
 
         Store.dispatch(signIn({phone,password})).then(res=>{
-            this.isRememberPwd ? local('password',password) : localRemove('password')
+            if(this.isRememberPwd){
+                local('password',password)
+                local('phone',phone)
+            }else{
+                localRemove('password')
+            }
             appRouter.navigate('home',true);
         }).catch(error=>{
 
@@ -78,6 +85,14 @@ var Login = Backbone.View.extend({
             return false
         }
         return true;
+    },
+    register(){
+        //编码两次，在接收处解码一次，可以解决接受到乱码的问题
+        appRouter.navigate(`register?title=${encodeURI(encodeURI("注册"))}`,{trigger:true})
+    },
+    forgetPwd(){
+         //编码两次，在接收处解码一次，可以解决接受到乱码的问题
+         appRouter.navigate(`register?title=${encodeURI(encodeURI("忘记密码"))}`,{trigger:true})
     }
 });
 
