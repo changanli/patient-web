@@ -27,9 +27,9 @@ var Home = Backbone.View.extend({
 		}).catch(error=>{
 			console.log(error);
 		})
-
+		this.scroll()
+	
 	},
-
 	render() {
 		this.$el.html(html({banners:this.banners}))
 	},
@@ -62,6 +62,16 @@ var Home = Backbone.View.extend({
 		   * 比如:$('.swiper-slide').on('click',()=>{})
 		   * 它里面的this是父级作用域initializeSwiper的this,initializeSwiper中的this就是调用它的直接调用者。
 		   */
+	},
+	scroll(){
+		window.onscroll = function(){
+			let top = $(this).scrollTop();
+			let opacity = top / 100.0;
+			if(opacity > 1){
+				opacity = 1;
+			}
+			$(".search_nav").css('backgroundColor',`rgba(44, 169, 253,${opacity})`);
+		}
 	},
 	clickTips(){
 		console.log('点击了');

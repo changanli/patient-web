@@ -1,34 +1,106 @@
-<div class="page-index">
-        <div class="title">我的</div>
-        <!-- <div class="weui-btn-area">
-            <button class="weui-btn weui-btn_primary">toast</button>
-        </div> -->
+<div class="weui-cells" style="margin-top:0px;">
+    <div class="header">
+      <div class="info">
+            <img src="<%=(require('../../images/icon/医生.png'))%>" alt="">
+            <span class="name">长安</span>
+            <button class="sign">每日签到</button>
+      </div>
+      <div class="yue">
+            <div>
+                <p id="balance"><%=balance%></p>
+                <p>账户余额(元)</p>
+            </div>
+            <div>
+                <p id="discount"><%=discount%></p>
+                <p>优惠券(张)</p>
+            </div>
+            <div>
+                <p id="score"><%=score%></p>
+                <p>金币</p>
+            </div>
+      </div>
     </div>
-    
-    <div>我的列表</div>
-    
-    
-    <div class="weui-tabbar">
-        <a href="#home" class="weui-tabbar__item">
-            <span style="display: inline-block;position: relative;">
-                <img src= <%=(require('../../images/SY.png'))%> alt="" class="weui-tabbar__icon">
-                <span class="weui-badge" style="position: absolute;top: -2px;right: -13px;">8</span>
-            </span>
-            <p class="weui-tabbar__label">首页</p>
+    <a class="weui-cell weui-cell_access" href="javascript:;">
+        <div class="weui-cell__hd"><img src="<%=(require('../../images/icon/医生.png'))%>" alt="" style="width:20px;margin-right:5px;display:block"></div>
+        <div class="weui-cell__bd">
+            <p>个人信息</p>
+        </div>
+        <div class="weui-cell__ft"></div>
+    </a>
+</div>
+
+<div class="weui-cells">
+    <a class="weui-cell weui-cell_access" href="javascript:;">
+        <div class="weui-cell__hd"><img src="<%=(require('../../images/icon/危险药品.png'))%>" alt="" style="width:20px;margin-right:5px;display:block"></div>
+        <div class="weui-cell__bd">
+            <p>健康档案</p>
+        </div>
+        <div class="weui-cell__ft"></div>
+    </a>
+</div>
+
+<div class="weui-cells">
+    <a class="weui-cell weui-cell_access" href="javascript:;">
+        <div class="weui-cell__hd"><img src="<%=(require('../../images/icon/听筒.png'))%>" alt="" style="width:20px;margin-right:5px;display:block"></div>
+        <div class="weui-cell__bd">
+            <p>我的收藏</p>
+        </div>
+        <div class="weui-cell__ft"></div>
+    </a>
+</div>
+
+<div class="weui-cells">
+        <a class="weui-cell weui-cell_access" href="javascript:;">
+            <div class="weui-cell__hd"><img src="<%=(require('../../images/icon/心率.png'))%>" alt="" style="width:20px;margin-right:5px;display:block"></div>
+            <div class="weui-cell__bd">
+                <p>推荐给朋友</p>
+            </div>
+            <div class="weui-cell__ft"></div>
         </a>
-        <a href="#docotor" class="weui-tabbar__item">
-            <img src=<%=(require('../../images/YS.png'))%> alt="" class="weui-tabbar__icon">
-            <p class="weui-tabbar__label">我的医生</p>
+        <a class="weui-cell weui-cell_access" href="javascript:;">
+            <div class="weui-cell__hd"><img src="<%=(require('../../images/icon/心电图机.png'))%>" alt="" style="width:20px;margin-right:5px;display:block"></div>
+            <div class="weui-cell__bd">
+                <p>设置与帮助</p>
+            </div>
+            <div class="weui-cell__ft"></div>
         </a>
-        <a href="#knowledge" class="weui-tabbar__item">
-            <span style="display: inline-block;position: relative;">
-                <img src=<%=(require('../../images/GYJT.png'))%> alt="" class="weui-tabbar__icon">
-                <span class="weui-badge weui-badge_dot" style="position: absolute;top: 0;right: -6px;"></span>
-            </span>
-            <p class="weui-tabbar__label">知识</p>
+        <a class="weui-cell weui-cell_access" href="javascript:;">
+            <div class="weui-cell__hd"><img src="<%=(require('../../images/icon/急救箱.png'))%>" alt="" style="width:20px;margin-right:5px;display:block"></div>
+            <div class="weui-cell__bd">
+                <p>长安客服</p>
+            </div>
+            <div class="weui-cell__ft"></div>
         </a>
-        <a href="javascript:;" class="weui-tabbar__item weui-bar__item_on">
-            <img src=<%=(require('../../images/WD-hover.png'))%> alt="" class="weui-tabbar__icon">
-            <p class="weui-tabbar__label">我</p>
+        <a class="weui-cell weui-cell_access" href="javascript:;">
+            <div class="weui-cell__hd"><img src="<%=(require('../../images/icon/护士.png'))%>" alt="" style="width:20px;margin-right:5px;display:block"></div>
+            <div class="weui-cell__bd">
+                <p>意见反馈</p>
+            </div>
+            <div class="weui-cell__ft"></div>
         </a>
     </div>
+
+<div class="weui-tabbar">
+    <a href="#home" class="weui-tabbar__item">
+        <span style="display: inline-block;position: relative;">
+            <img src= <%=(require('../../images/SY.png'))%> alt="" class="weui-tabbar__icon">
+            <span class="weui-badge" style="position: absolute;top: -2px;right: -13px;">8</span>
+        </span>
+        <p class="weui-tabbar__label">首页</p>
+    </a>
+    <a href="#docotor" class="weui-tabbar__item">
+        <img src=<%=(require('../../images/YS.png'))%> alt="" class="weui-tabbar__icon">
+        <p class="weui-tabbar__label">问诊</p>
+    </a>
+    <a href="#knowledge" class="weui-tabbar__item">
+        <span style="display: inline-block;position: relative;">
+            <img src=<%=(require('../../images/GYJT.png'))%> alt="" class="weui-tabbar__icon">
+            <span class="weui-badge weui-badge_dot" style="position: absolute;top: 0;right: -6px;"></span>
+        </span>
+        <p class="weui-tabbar__label">知识</p>
+    </a>
+    <a href="javascript:;" class="weui-tabbar__item weui-bar__item_on">
+        <img src=<%=(require('../../images/WD-hover.png'))%> alt="" class="weui-tabbar__icon">
+        <p class="weui-tabbar__label">我</p>
+    </a>
+</div>

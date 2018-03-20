@@ -1,0 +1,35 @@
+<%=(require('@/components/navigation/navigation.ejs')({title:'个人信息'}))%>
+
+<div class="weui-cells">
+    <a class="weui-cell weui-cell_access" href="javascript:;">
+        <div class="weui-cell__bd">
+            <p>头像</p>
+        </div>
+        <div class="weui-cell__ft"> 
+            <div class="weui-cell__hd">
+                <img src="<%=(require('../../images/icon/危险药品.png'))%>" alt="" style="width:50px;margin-right:5px;display:block">
+            </div>
+        </div>
+    </a>
+    <a class="weui-cell weui-cell_access" href="javascript:;">
+            <div class="weui-cell__bd">
+                <p>昵称</p>
+            </div>
+            <div class="weui-cell__ft"> 
+                <div class="weui-cell__hd">
+                    <%=name%>
+                </div>
+            </div>
+        </a>
+        <a class="weui-cell weui-cell_access" href="javascript:;">
+            <div class="weui-cell__bd">
+                <p>手机号</p>
+            </div>
+            <div class="weui-cell__ft"> 
+                <div class="weui-cell__hd">
+                    <%=phone%>
+                </div>
+            </div>
+        </a>
+    </div>
+    

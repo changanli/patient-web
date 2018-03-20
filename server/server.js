@@ -35,11 +35,7 @@ app.use('/',express.static(path.resolve('build')));
 app.get('/pv1/home',function(req,res){
     const {userId} = req.query;
     const accessToken = req.header('accessToken')
-    console.log(accessToken);
-    console.log(userId);
     User.findOne({'_id':userId,accessToken},function(err,doc){
-        console.log(err);
-        console.log(doc);
         if(err){
             return res.status(500).json('服务器内部错误');
         }

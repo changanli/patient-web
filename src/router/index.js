@@ -10,12 +10,13 @@ function CommonController(controller, params) {
 export const router_object = {
     '/': 'login',
     'index': 'index',
-    'home': 'home',
-    'doctor' : 'doctor',
-    'knowledge' : 'knowledge',
-    'mine' : 'mine',
-    'login': 'login',
-    'register' : 'register',
+    'home': 'home', //首页
+    'doctor' : 'doctor', //医生
+    'knowledge' : 'knowledge', //知识
+    'mine' : 'mine', //个人中心
+    'login': 'login', //登录
+    'register' : 'register', //注册
+    'personalInformation':'personalInformation', //个人信息
     'iframe' : 'iframe',
     '*actions': 'login'
 }
@@ -56,6 +57,11 @@ export const routes = {
     },
     register(params) {
         import('@/pages/register/controller').then(controller=>{
+            CommonController(controller,params)
+        })
+    },
+    personalInformation(params) {
+        import('@/pages/personalInformation/controller').then(controller=>{
             CommonController(controller,params)
         })
     },

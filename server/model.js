@@ -11,14 +11,15 @@ mongod --config /usr/local/etc/mongod.conf
 const models = {
     user:{
         'phone':{type:String,'require':true},
-        'password':{type:String,'require':true},
-        // 头像
-        avatar:{'type':String},
-        // 个人简介
-        'desc':{'type':String},
-        // 职位名称
-        'title':{'type':String},
+        'password':{type:String,'require':true}, 
         'accessToken':{'type':String},
+        'username':{'type':String},
+        'avatar':{'type':String},// 头像
+        'score':{'type':Number}, // 积分
+        'balance':{'type':Number},   // 账户余额
+        'discount':{'type':Number}, //优惠券
+        'signTime' : {'type':String}, //上一次签到的日期 年月日
+        'createTime':{'type':String}
     }
 };
 

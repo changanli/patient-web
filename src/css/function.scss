@@ -13,6 +13,7 @@ $linearGradient: -webkit-linear-gradient(left, $linearLeft, $linearRight);
 $themeColor : #2ca9fd;
 $blackColor : #323232;
 $grayColor : #646464;
+$lineColor : #e1e1e1;
 @function pxToRem($px) {
     @return $px / $baseFontSize * 1rem;
 }

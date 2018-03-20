@@ -1,6 +1,28 @@
 @import '../../css/base.scss';
 @import '../../css/function.scss';
 
+//横线css
+$border-line:1px $lineColor solid;
+
+// 标题导航样式
+@mixin nav {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 1px solid $lineColor;
+    span {
+        margin-left:10px;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    a {
+        float: right;
+        margin-right: 10px;
+        color:$themeColor;
+    }
+}
+
 /* 导航栏 */
 .search_nav{
     position: fixed;
@@ -68,7 +90,6 @@
 }
 
 /*轮播图*/ 
-
 .swiper-container {
     width: 100%;
     height: 200px;
@@ -99,7 +120,226 @@
     .swiper-pagination-bullet-active {
         background: white;
     }
-  
+}
+
+// 找医生 去挂号
+.service {
+    position: relative;
+    width: 100%;
+    height: 80px;
+    background: white;
+    .line {
+        position: absolute;
+        width: 1px;
+        height: 80%;
+        top:10%;
+        background-color:$lineColor;
+    }
+
+    div{
+        padding-top: 10px;
+        width:50%;
+        height: 100%;
+        float: left; //标准文档流下50%无法平分
+        $imgHeight:30px;
+        p:nth-child(1){
+            width: 90px;
+            height: $imgHeight;
+            display:table;
+            margin:0 auto;
+            img{
+                width: 30px;
+                height: $imgHeight;
+                margin-right: 5px;
+            }
+            .title{
+                position: absolute;
+                color:$blackColor;
+                font-weight: bold;
+                height: $imgHeight;
+                line-height: $imgHeight;
+                font-size: 18px;
+            }
+       }
     
-    
+        p:nth-child(2){
+            text-align: center;
+            color:$grayColor;
+            margin-top:5px;
+            font-size: 14px;
+            .doctorCount {
+                color:$themeColor;
+            }
+        }
+    }
+}
+
+// 在线问诊
+.consultOnline {
+    margin-top:10px;
+    width: 100%;
+    height: 200px;
+    background-color: white;
+    margin-bottom:10px;
+    .category {
+        width: 100%;
+        height: 40px;
+        text-align: center;
+        color:$blackColor;
+        line-height: 40px;
+        border-bottom: $border-line;
+    }
+    .consult {
+        width: 100%;
+        height: 80px;
+        div:nth-child(1){
+            border-right: $border-line;
+        }
+        div{
+           float: left;
+            width: 50%;
+            height: 100%;
+            .title {
+                text-align: center;
+                font-size: 18px;
+                color:$blackColor;
+                margin-top:10px;
+                font-weight: bold;
+            }
+            .desc {
+                text-align: center;
+                color:$grayColor;
+                font-size: 14px;
+                margin-top:5px;
+            }
+        }
+    }
+    .phoneOrVideo {
+        width: 100%;
+        height: 80px;
+        div {
+            float: left;
+            width: 33.3%;
+            height: 100%;
+            border-right: $border-line;
+            .title {
+                width: 100%;
+                text-align: center;
+                font-size: 18px;
+                color:$blackColor;
+                margin-top:10px;
+                font-weight: bold;
+            }
+            .desc {
+                width: 100%;
+                text-align: center;
+                font-size: 14px;
+                color:$grayColor;
+                margin-top:5px;
+            }
+        }
+        div:nth-child(3) {
+            border-right: none;
+        }
+    }
+}
+
+// 线下问诊
+.consult {
+    width: 100%;
+    height: 160px;
+    background-color: white; 
+    div{
+        float: left;
+        width: 50%;
+        height: 50%;
+        text-align: center;
+        border-right: 1px solid $lineColor;
+        border-bottom: 1px solid $lineColor;
+        .title {
+            font-size: 18px;
+            color:$blackColor;
+            margin-top:10px;
+            font-weight: bold;
+        }
+        .desc {
+            font-size: 14px;
+            color:$grayColor;
+            margin-top:5px;
+        }
+    }
+}
+
+// 热门门诊
+.hot {
+    background-color: white;
+    margin-top:10px;
+    width: 100%;
+    height: 200px;
+    .nav {
+      @include nav
+    } 
+    .category {
+        width: 100%;
+        height: 160px;
+        div {
+            width: 33.3%;
+            height: 50%;
+            float: left;
+            border-right: $border-line;
+            border-bottom: $border-line;
+            text-align: center;
+            p {
+                margin-top:5px;
+            }
+            img {
+                width: 40px;
+                height: 40px;
+            }
+        }
+    }
+}
+
+// 精选好文
+.goodArticle {
+    margin-top:10px;
+    background-color: white;
+    .nav {
+        @include nav
+    }
+    .content{
+        div {
+            width: 100%;
+            height: 80px;
+            padding: 10px;
+            border-bottom:$border-line;
+            .title{
+                width: 100%;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                color:$blackColor;
+                font-size: 18px;
+            }
+            .desc {
+                margin-top:5px;
+                color:$grayColor;
+                height: 26px;
+                line-height: 26px;
+                span:nth-child(1){
+                    display: inline-block;
+                    background-color: $themeColor;
+                    width: 40px;
+                    height: 100%;
+                    text-align: center;
+                    font-size: 14px;
+                    border-radius: 5px;
+                    color:white;
+                }
+                .total {
+                    margin-left: 10px;
+                }
+            }
+        }
+    }
 }

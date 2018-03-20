@@ -94,6 +94,17 @@ var Register = Backbone.View.extend({
 	,
 	reg(phone,password){
 		Store.dispatch(signUp({phone,password})).then(res=>{
+			weui.dialog({
+				title: '温馨提示',
+				content: '注册成功，奖励100金币',
+				className: 'custom-classname',
+				buttons: [{
+				label: '确定',
+				type: 'primary',
+				onClick: function () { 
+				}
+				}]
+			});
 			appRouter.navigate('home',{trigger:true})
 		}).catch(error=>{
 
