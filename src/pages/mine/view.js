@@ -7,67 +7,63 @@ import {
 } from '@/components'
 
 import fetch from '@/utils/fetch';
+import {getUserInfo,sign} from '@/redux/actions/user';
 
 var Mine = Backbone.View.extend({
 	el: '#app',
 
 	events: {
-        'click .sign' : 'postSign'
+		'click .sign' : 'postSign',
+		'click .weui-cell:eq(0)' : 'info',
+		'click #avatar' : 'info',
+		'click .name' : 'info'
 	},
 
 	initialize() {
 		this.render();
-		$('.weui-cell:eq(0)').on('click',function(){
-			appRouter.navigate('personalInformation',{trigger:true})
-		})
-		let {userId} = Store.getState().user;
-		fetch.get('/user/userInfo',{
-			params:{
-				userId
-			}
-		}).then(res=>{
-			console.log(res);
-			const {score,balance,discount,isSign} = res.data;
-			this.score = score;
-			this.balance = balance;
-			this.discount = discount;
-			this.isSign = isSign;
-			$('#score').html(this.score);
-			$('#discount').html(this.discount);
-			$('#balance').html(this.balance);
-			this.sign();
-		
-		}).catch(error=>{
-			console.log(error);
-		})
+		this.getUserData()
 	},
 
 	render() {
-		this.$el.html(html({score:this.score,balance:this.balance,discount:this.discount}));
+		this.$el.html(html());
+	},
+	info(){
+		appRouter.navigate('personalInformation',{trigger:true})
+	},
+	getUserData(){
+		const {userId} = Store.getState().user;
+		Store.dispatch(getUserInfo({params:{userId}})).then(res=>{
+			const {score,balance,discount,username,avatar} = res;
+			$('#score').html(score);
+			$('#discount').html(discount);
+			$('#balance').html(balance);
+			$('.name').html((username.length == 0) ? '未设置' : username)
+			avatar.length != 0 && $('#avatar').attr('src',avatar);
+			this.sign();
+		}).catch(err=>{
+			console.log(err);
+		})
 	},
 	postSign(){
 		const {userId} = Store.getState().user;
-		fetch.post('/user/sign',{
-			userId
-		}).then(res=>{
+		Store.dispatch(sign({userId})).then(res=>{
 			const {code,msg,score} = res.data;
 			if(code == 0){
-				Toast({message:'签到成功!'})
-				this.score = score;
-				$('#score').html(this.score);
-				this.isSign = true;
+				Toast({message:'签到成功,奖励50金币!'})
+				$('#score').html(score);
 				this.sign();
 			}else{
 				weui.topTips(msg);
 			}
 		}).catch(error=>{
 			console.log(error);
-		})
+		});
 	},
 	sign(){
-		$('.sign').prop('disabled',this.isSign ? 'disabled' : '');
-		$('.sign').html(this.isSign ? '已签到' : '每日签到');
-		$('.sign').css('backgroundColor',this.isSign ? 'red' : 'orange');
+		const {isSign} = Store.getState().user;
+		$('.sign').prop('disabled',isSign ? 'disabled' : '');
+		$('.sign').html(isSign ? '已签到' : '每日签到');
+		$('.sign').css('backgroundColor',isSign ? 'red' : 'orange');
 	}
 });
 

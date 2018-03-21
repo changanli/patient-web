@@ -1,9 +1,10 @@
 const express = require('express'); //express开发web接口
-// 引入body-parser post请求要借助body-parser模块
-const bodyPaeser = require('body-parser');
+const fs = require('fs');
+const bodyPaeser = require('body-parser'); // 引入body-parser post请求要借助body-parser模块
 const cookieParser = require('cookie-parser'); //引入模块
 const userRouter = require('./user');
 const path = require('path');
+const multer = require('multer'); //接收图片
 // 新建app
 const app = express();
 // 配合Express使用
@@ -11,6 +12,7 @@ const server = require('http').Server(app);
 const io = require('socket.io')(server);
 const model = require('./model');
 const User = model.getModel('user');
+const upload = multer({dest:'./uploads'}) //定义图片上传时的临时目录
 //使用中间件
 app.use(cookieParser());
 app.use(bodyPaeser.json());
@@ -24,14 +26,27 @@ app.use(function(req,res,next){
     if(req.url.startsWith('/pv1/')){
         return next();
     }
-    if(req.url.startsWith('/static/')){
+    if(req.url.startsWith('/static/')||req.url.startsWith('/uploads/')){
         const str = '.'+String(req.path)
         return res.sendFile(path.resolve(str));
     }
+    
     return res.sendFile(path.resolve('build/index.html'));
 })
 app.use('/',express.static(path.resolve('build')));
 
+app.post('/pv1/upload',upload.single('upfile'),function(req,res,next){
+    const newFilePath = 'uploads/'+ Date.parse(new Date()) + req.file.originalname
+    fs.rename(req.file.path,newFilePath,function(err){
+        if(err){
+            return res.status(500).json('服务器内部错误');
+        }
+        return res.status(200).json({code:0,'img':newFilePath});
+    })
+   
+    // req.file 是 `avatar` 文件的信息
+    // req.body 将具有文本域数据，如果存在的话
+});
 app.get('/pv1/home',function(req,res){
     const {userId} = req.query;
     const accessToken = req.header('accessToken')

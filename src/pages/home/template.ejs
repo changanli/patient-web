@@ -2,7 +2,7 @@
 <div class="search_nav">
     <span class="searchIcon"></span>
     <input type="search" placeholder="医生 疾病 医院 科室" autocomplete="off"> 
-    <a href="" class="message">
+    <a href="javascript:;" class="message">
         <img src=<%=(require('../../images/WXX.png'))%> alt="">
         <span class="messageCount"></span>
     </a>
@@ -21,7 +21,7 @@
 
 <!-- 找医生 去挂号 -->
 <div class="service">
-    <div>
+    <div id="searchDoctor">
         <p><img src="<%=require('../../images/home_zhaoyisheng.png')%>" alt=""><span class="title">找医生</span></p>
         <p class="desc">查擅长 · 看评价 · 选医生</p>
     </div>
@@ -126,7 +126,7 @@
     </a>
     <a href="#doctor" class="weui-tabbar__item">
         <img src=<%=(require('../../images/YS.png'))%> alt="" class="weui-tabbar__icon">
-        <p class="weui-tabbar__label">问诊</p>
+        <p class="weui-tabbar__label">找医生</p>
     </a>
     <a href="#knowledge" class="weui-tabbar__item">
         <span style="display: inline-block;position: relative;">

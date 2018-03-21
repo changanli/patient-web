@@ -1,4 +1,13 @@
-# 打算写一个web项目，刚刚完成了登录、注册、忘记密码的开发工作，后台使用了nodejs+express+mongodb,前端使用了backbone+redux+ejs。
+# 技术:
+## 后台:nodejs Express mongodb
+## 前端:backbone redux ejs scss 
+## 构建工具:webpack 3.10.0
+# 已完成模块:
+## 登录
+## 注册
+## 找回密码
+## 修改个人信息(上传头像、用户名)
+## 每日签到
 
 # 运行的前提:安装了nodejs和mongodb
 

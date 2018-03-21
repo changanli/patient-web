@@ -104,6 +104,39 @@ Router.post('/resetPassword',function(req,res){
         return res.status(200).json({code:0,phone,score,avatar,balance,discount,username,isSign});
     })
  });
+// 更新用户信息
+ Router.post('/update',function(req,res){
+    const {avatar,username,userId} = req.body;
+    const accessToken = req.header('accessToken')
+    User.findOne({'_id':userId,accessToken},function(err,doc){
+        if(err){
+            return res.status(500).json('服务器内部错误');
+        }
+        if(!doc){
+           return res.status(401).json('会话过期,请重新登录');
+        }
+        var params = {};
+        if(avatar != null) {
+            params = {avatar};
+        }else if (username != null){
+            params = {username}
+        }else if(username == null && avatar == null){
+            return res.status(400).json('请传入参数');
+        }else{
+            params = {username,avatar};
+        }
+        User.update({'_id':userId},params,function(e,d){
+            if(e) {
+                return res.status(500).json('服务器内部错误');
+            }
+            User.findOne({'_id':userId,accessToken},function(er,dc){
+                const {username,avatar,phone} = dc;
+                console.log(username);
+                return res.status(200).json({code:0,username,avatar,phone});
+            })
+        })
+    })
+ });
 
  //每日签到
  Router.post('/sign',function(req,res){

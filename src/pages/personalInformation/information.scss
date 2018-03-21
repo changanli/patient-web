@@ -1,0 +1,43 @@
+@import '../../css/base.scss';
+@import '../../css/function.scss';
+
+.photo{
+    span {
+        $iconWidth:50px;
+        display: inline-block;
+        width: $iconWidth;
+        height: $iconWidth;
+        border-radius: $iconWidth/2;
+        background: url('../../images/icon/医生.png') no-repeat center;
+        background-size: cover;
+        border:1px solid $themeColor;
+        input[type=file]{
+           opacity: 0; //opacity：0则仅仅不可见，但仍可被浏览器发现，也就能触发各种事件
+           width: $iconWidth;
+           height: $iconWidth;
+           outline: none;
+        }
+    }
+ 
+}
+
+.fanhui {
+    display: inline-block;
+    width: 40px;
+    height: 44px;
+    line-height: 44px;
+    color:white;
+    font-size: 20px;
+    margin-left:10px;
+    background: url("../../images/back.png") no-repeat center;
+    background-size: 10px 18px;
+}
+.done {
+    position: absolute;
+    width: 40px;
+    height: 44px;
+    line-height: 44px;
+    color:white;
+    font-size: 20px;
+    right:10px;
+}

@@ -94,21 +94,26 @@ var Register = Backbone.View.extend({
 	,
 	reg(phone,password){
 		Store.dispatch(signUp({phone,password})).then(res=>{
-			weui.dialog({
-				title: '温馨提示',
-				content: '注册成功，奖励100金币',
-				className: 'custom-classname',
-				buttons: [{
-				label: '确定',
-				type: 'primary',
-				onClick: function () { 
-				}
-				}]
-			});
+			// this.registerSuccess();
 			appRouter.navigate('home',{trigger:true})
 		}).catch(error=>{
 
 		})
+	},
+	registerSuccess(){
+		weui.dialog({
+			title: '温馨提示',
+			content: '注册成功，奖励100金币',
+			className: 'custom-classname',
+			buttons: [{
+			label: '确定',
+			type: 'primary',
+			onClick: function () { 
+			//告诉首页，是从注册页面跳转过来的
+				appRouter.navigate('home?type=1',{trigger:true})
+			}
+			}]
+		});
 	},
 	validate(phone,yanzhengma,password,repeatPassword){
 		if (phone === ""){

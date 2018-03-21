@@ -147,17 +147,21 @@ $border-line:1px $lineColor solid;
             height: $imgHeight;
             display:table;
             margin:0 auto;
+            position: relative;
             img{
                 width: 30px;
                 height: $imgHeight;
                 margin-right: 5px;
             }
             .title{
+                $titleHeight:22px;
                 position: absolute;
                 color:$blackColor;
                 font-weight: bold;
-                height: $imgHeight;
-                line-height: $imgHeight;
+                height: $titleHeight;
+                line-height: $titleHeight;
+                margin-top:-$titleHeight/2;
+                top:50%;
                 font-size: 18px;
             }
        }
@@ -290,11 +294,14 @@ $border-line:1px $lineColor solid;
             border-bottom: $border-line;
             text-align: center;
             p {
-                margin-top:5px;
+                margin-top:10px;
+                height: 16px;
+                line-height: 16px;
             }
             img {
-                width: 40px;
-                height: 40px;
+                margin-top:5px;
+                width: 35px;
+                height: 35px;
             }
         }
     }

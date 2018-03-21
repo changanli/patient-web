@@ -11,3 +11,15 @@ export const registerAxios=(data)=>(
 export const resetPasswordAxios=(data)=>(
     fetch.post('/user/resetPassword',data)
 )
+// 获取个人信息
+export const getUserInfoAxios=(data)=>(
+    fetch.get('/user/userInfo',data)
+)
+export const updateUserInfoAxios=(data)=>(
+    fetch.post('/user/update',data)
+)
+// 签到
+export const signAxios=(data)=>(
+    fetch.post('/user/sign',data)
+)
+    

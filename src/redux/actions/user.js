@@ -1,5 +1,6 @@
 import * as types from '../mutation-types';
 import {loginAxios,registerAxios,resetPasswordAxios} from '@/api/user';
+import { getUserInfoAxios, signAxios, updateUserInfoAxios } from '../../api/user';
 
 //Action Creator
 export function login(data) {
@@ -26,6 +27,78 @@ export function resetPassword(data){
     return {
         type: types.USER_RESET_PASSWORD,
         data
+    }
+}
+
+export function userInfo(data){
+    return {
+        type: types.USER_INFO,
+        data
+    }
+}
+
+// 签到
+export const sign=(params)=>(dispatch,getState)=>{
+    if(params){
+        return new Promise((resolve,reject)=>{
+            signAxios(params).then(res=>{
+                const data = res.data;
+                if(data.code === 0){
+                    const isSign = true;
+                    dispatch(userInfo({isSign}))
+                }else{
+                    weui.topTips(data.data || '签到失败，请联系客服')
+                }
+                resolve(res);
+            }).catch(error=>{
+                weui.topTips(error.data);
+                reject(error);
+            })
+        })
+    }
+}
+
+/**
+ * 修改个人信息
+ */
+export const updateUserInfo=(params)=>(dispatch,getState)=>{
+    if(params){
+        return new Promise((resolve,reject)=>{
+            updateUserInfoAxios(params).then(res=>{
+                const {code,...info} = res.data;
+                if(code === 0){
+                    dispatch(userInfo(info))
+                }else{
+                    weui.topTips(res.data.data || '未知错误，请联系客服')
+                }
+                resolve(res.data);
+            }).catch(err=>{
+                weui.topTips(error.data);
+                reject(error);
+            })
+        })
+    }
+}
+/**
+ * 获取用户信息
+ * @param {} params 
+ */
+export const getUserInfo=(params)=>(dispatch,getState)=>{
+    if(params){
+        return new Promise((resolve,reject)=>{
+            getUserInfoAxios(params).then(res=>{
+                const {code,...info} = res.data;
+                if(code === 0){
+                    dispatch(userInfo(info))
+                }else{
+                    weui.topTips(res.data.data || '未知错误，请联系客服')
+                }
+                resolve(res.data);
+            }).catch(error=>{
+                weui.topTips(error.data);
+                reject(error);
+            })
+        })
     }
 }
 

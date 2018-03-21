@@ -1,21 +1,21 @@
 <div class="weui-cells" style="margin-top:0px;">
     <div class="header">
       <div class="info">
-            <img src="<%=(require('../../images/icon/医生.png'))%>" alt="">
-            <span class="name">长安</span>
+            <img id="avatar" src="<%=(require('../../images/icon/医生.png'))%>" alt="">
+            <span class="name">未设置</span>
             <button class="sign">每日签到</button>
       </div>
       <div class="yue">
             <div>
-                <p id="balance"><%=balance%></p>
+                <p id="balance">0</p>
                 <p>账户余额(元)</p>
             </div>
             <div>
-                <p id="discount"><%=discount%></p>
+                <p id="discount">0</p>
                 <p>优惠券(张)</p>
             </div>
             <div>
-                <p id="score"><%=score%></p>
+                <p id="score">0</p>
                 <p>金币</p>
             </div>
       </div>
@@ -88,9 +88,9 @@
         </span>
         <p class="weui-tabbar__label">首页</p>
     </a>
-    <a href="#docotor" class="weui-tabbar__item">
+    <a href="#doctor" class="weui-tabbar__item">
         <img src=<%=(require('../../images/YS.png'))%> alt="" class="weui-tabbar__icon">
-        <p class="weui-tabbar__label">问诊</p>
+        <p class="weui-tabbar__label">找医生</p>
     </a>
     <a href="#knowledge" class="weui-tabbar__item">
         <span style="display: inline-block;position: relative;">

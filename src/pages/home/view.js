@@ -1,6 +1,6 @@
 import html from './template.ejs'
 import './home.scss'
-import {local} from '@/utils';
+import {local,query} from '@/utils';
 import Swiper from 'swiper';
 import 'swiper/dist/css/swiper.min.css';
 import fetch from '@/utils/fetch';
@@ -13,10 +13,10 @@ var Home = Backbone.View.extend({
 	el: '#app',
 
 	events: {
-		'click .swiper-slide': 'clickTips'
+		'click #searchDoctor':'searchDoctor'
 	},
 
-	initialize() {
+	initialize(params) {
 		const {userId} = Store.getState().user
 		fetch.get('/pv1/home',{
 			params:{userId}
@@ -28,7 +28,6 @@ var Home = Backbone.View.extend({
 			console.log(error);
 		})
 		this.scroll()
-	
 	},
 	render() {
 		this.$el.html(html({banners:this.banners}))
@@ -47,21 +46,21 @@ var Home = Backbone.View.extend({
 			}
 		  });
 		  $('.swiper-slide').on('click',function(){
-			  //正则去掉首尾``字符
-			  const link = $(this).attr('alt').replace(new RegExp('^\\`+|\\`+$', 'g'), '');
-			  appRouter.navigate(`iframe?uri=${link}&backRouter=home`,{trigger:true});
-		  });
-		 
-		  /**
-		   * 普通函数中的this:
-		   * 1.this总是代表它的直接调用者(js的this是执行上下文), 例如 obj.func ,那么func中的this就是obj
-		   * 2.在默认情况(非严格模式下,未使用 'use strict'),没找到直接调用者,则this指的是 window (约定俗成) 例如:func()
-		   * 3.在严格模式下,没有直接调用者的函数中的this是 undefined 例如 func()
-		   * 4.使用call,apply,bind(ES5新增)绑定的,this指的是 绑定的对象
-		   * 箭头函数中的this: 是父级作用域中的this
-		   * 比如:$('.swiper-slide').on('click',()=>{})
-		   * 它里面的this是父级作用域initializeSwiper的this,initializeSwiper中的this就是调用它的直接调用者。
-		   */
+			//正则去掉首尾``字符
+			const link = $(this).attr('alt').replace(new RegExp('^\\`+|\\`+$', 'g'), '');
+			appRouter.navigate(`iframe?uri=${link}&backRouter=home`,{trigger:true});
+		});
+	   
+		/**
+		 * 普通函数中的this:
+		 * 1.this总是代表它的直接调用者(js的this是执行上下文), 例如 obj.func ,那么func中的this就是obj
+		 * 2.在默认情况(非严格模式下,未使用 'use strict'),没找到直接调用者,则this指的是 window (约定俗成) 例如:func()
+		 * 3.在严格模式下,没有直接调用者的函数中的this是 undefined 例如 func()
+		 * 4.使用call,apply,bind(ES5新增)绑定的,this指的是 绑定的对象
+		 * 箭头函数中的this: 是父级作用域中的this
+		 * 比如:$('.swiper-slide').on('click',()=>{})
+		 * 它里面的this是父级作用域initializeSwiper的this,initializeSwiper中的this就是调用它的直接调用者。
+		 */
 	},
 	scroll(){
 		window.onscroll = function(){
@@ -73,8 +72,8 @@ var Home = Backbone.View.extend({
 			$(".search_nav").css('backgroundColor',`rgba(44, 169, 253,${opacity})`);
 		}
 	},
-	clickTips(){
-		console.log('点击了');
+	searchDoctor(){
+		appRouter.navigate('doctor',{trigger:true});
 	}
 });
 

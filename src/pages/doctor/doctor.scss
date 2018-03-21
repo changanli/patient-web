@@ -1,0 +1,108 @@
+@import '../../css/base.scss';
+@import '../../css/function.scss';
+.container{
+    height: 44px;
+    .doctor-nav {
+        width: 100%;
+        height: 44px;
+        background-color:$themeColor;
+        position: fixed;
+        z-index: 999;
+        .title {
+           $titleWidth:120px;
+           position: absolute;
+           left:50%;
+           width: $titleWidth;
+           height: 44px;
+           line-height: 44px;
+           margin-left:-$titleWidth/2;
+           text-align: center;
+           color:white;
+           font-size: 20px;
+        }
+    }
+}
+
+// 按照 疾病 医院分类
+.category {
+    width: 100%;
+    height: 115px;
+    background-color: white;
+    div{
+        float: left;
+        width: 50%;
+        height: 100%;
+        text-align: center;
+        border-right: 1px solid $lineColor;
+        img {
+            margin-top:10px;
+            width: 40px;
+            height: 40px;
+        }
+        .title{
+            color:$blackColor;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .desc {
+            color:$grayColor;
+            font-size: 14px;
+        }
+
+    }
+}
+
+// 按照科室分类
+
+.department{
+    margin-top:10px;
+    width: 100%;
+    background-color: white;
+    .nav {
+        $navigationHeight:44px;
+        width: 100%;
+        height: $navigationHeight;
+        position: relative;
+        border-bottom: 1px solid $lineColor;
+        img {
+            $widthColor:30px;
+            margin-left: 10px;
+            width: $widthColor;
+            height: $widthColor;
+            margin-top:7px;
+            float: left;
+        }
+        .title{
+            font-size: 18px;
+            font-weight: bold;
+            height: 18px;
+            line-height: 18px;
+            margin-left:10px;
+            margin-top:13px;
+            float: left;
+        }
+        .desc {
+            font-size: 14px;
+            height: 14px;
+            line-height: 14px;
+            color: $grayColor;
+            margin-top:15px;
+            float: left;
+            margin-left: 5px;
+        }
+    }
+    .depart-category{
+        width: 100%;
+        overflow: hidden;
+        div{
+            float: left;
+            width: 25%;
+            height: 50px;
+            line-height: 50px;
+            font-size: 16px;
+            text-align: center;
+            border-right: 1px solid $lineColor;
+            border-bottom: 1px solid $lineColor;
+        }
+    }
+}
