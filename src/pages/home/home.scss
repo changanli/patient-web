@@ -322,6 +322,7 @@ $border-line:1px $lineColor solid;
             border-bottom:$border-line;
             .title{
                 width: 100%;
+                // 单行显示
                 overflow: hidden;
                 white-space: nowrap;
                 text-overflow: ellipsis;

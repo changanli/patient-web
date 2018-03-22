@@ -12,6 +12,7 @@ const server = require('http').Server(app);
 const io = require('socket.io')(server);
 const model = require('./model');
 const User = model.getModel('user');
+const Doctor = model.getModel('doctor');
 const upload = multer({dest:'./uploads'}) //定义图片上传时的临时目录
 //使用中间件
 app.use(cookieParser());
@@ -47,6 +48,44 @@ app.post('/pv1/upload',upload.single('upfile'),function(req,res,next){
     // req.file 是 `avatar` 文件的信息
     // req.body 将具有文本域数据，如果存在的话
 });
+
+//获取部门分类
+app.get('/pv1/department',function(req,res){
+    const json = require('./static/departCategory.json');
+    
+    return res.status(200).json(json);
+})
+app.get('/pv1/saveDoctorData',function(req,res){
+
+    const json = require('./static/doctorList.json');
+    // model.update({},{$set:{node:node}},{multi:true});
+    for(let i = 0; i<json.length;i++){
+        const doctorModel = new Doctor(json[i]);
+        doctorModel.update({},{$set:doctorModel},{multi:true},function(err,doc){
+            
+        });
+        // doctorModel.save(function(e,d){
+        //     if(e){
+        //         return res.status(500).json('服务器内部错误');
+        //     }
+        //     console.log(d)
+        //     return res.status(200);
+        // })
+    }
+})
+//获取医生列表
+app.get('/pv1/doctorList',function(req,res){
+    const {secondFacultyId} = req.query;
+    const json = require('./static/doctorList.json');
+    for(let i = 0; i<json.length;i++){
+        if(secondFacultyId == json[i].secondFacultyId){
+            return res.status(200).json({code:0,'doctorList':json[i].doctorList})
+        }else{
+            return res.status(200).json({code:0,'doctorList':[]});
+        }
+    }
+})
+
 app.get('/pv1/home',function(req,res){
     const {userId} = req.query;
     const accessToken = req.header('accessToken')

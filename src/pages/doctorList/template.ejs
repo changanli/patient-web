@@ -1,0 +1,23 @@
+<div>
+    <%for(var i = 0; i<doctors.length;i++){%>
+    <div class="info">
+        <img class="avatar" src="" alt="" style="background:url('<%=doctors[i].logoUrl%>') no-repeat center;background-size:contain">
+        <div class="doctorInfo">
+            <p class="name"><%=doctors[i].name%></p>
+            <p><span class="title"><%=doctors[i].fullGrade%></span></p> 
+            <p> <span class="hospital"><%=doctors[i].hospitalFacultyFullName%></span> </p>
+        </div>
+        <div class="recommended">
+            <p>推荐热度(综合): <span class="score"><%=doctors[i].recommendIndex%></span> <span class="jian">荐</span>  (近两年患者推荐)</p>
+            <p><span class="effect">疗效: <span><%=doctors[i].effect%> 满意</span></span><span class="satisfy">态度:<span><%=doctors[i].attitude%> 满意</span></span></p>
+            <p>2年内票数<%=doctors[i].voteCntIn2Years%>/总得票<%=doctors[i].voteCnt%></p>
+            <p class="goodAt">擅长: <%=doctors[i].specialize%></p>
+            <p> 
+                <img class="tuwen" src=<% if(doctors[i].productPriceList[0].isOpen == 1){%> <%=require('../../images/onlineClinic_text_icon_15x14_@3x.png')%> <%} else {%> <%=require('../../images/onlineClinic_text_icon_15x14_@3x.png')%><%}%> alt=""> <%=doctors[i].productPriceList[0].text%>:<span class="consultPrice">     <%=doctors[i].productPriceList[0].price%></span>
+                <img class="phoneConsultIcon" src=<% if(doctors[i].productPriceList[1].isOpen == 1){%> <%=require('../../images/onlineClinic_phone_icon_13x14_@3x.png')%> <%} else {%> <%=require('../../images/onlineClinic_phone_hui_icon_13x14_@3x.png')%><%}%> alt=""> <%=doctors[i].productPriceList[1].text%><span class="consultPrice">     <%=doctors[i].productPriceList[1].price%></span>
+            </p>
+            <p><span>24小时图文回复率:<%=doctors[i].replyRate24H%></span> <span>近两周回复数:<%=doctors[i].casePostCount2Week%></span> </p>
+        </div>
+    </div>
+    <%}%>
+</div>

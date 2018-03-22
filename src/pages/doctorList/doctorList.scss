@@ -1,0 +1,91 @@
+@import '../../css/base.scss';
+@import '../../css/function.scss';
+
+.info {
+    position: relative;
+    background-color: white;
+    border-top: 1px solid $lineColor; 
+    overflow: hidden;
+    /*
+        外边距塌陷:嵌套的盒子，直接给里面的盒子设置垂直方向外边距的时候，
+        比如:margin-top:10px，外边的盒子会往下移动10px,里面盒子的位置没有发生变化，这种现象就叫做外边距塌陷。
+        两个盒子的垂直外边距完全接触才会触发外边距塌陷。
+        外边距塌陷的解决办法:
+        1.给父盒子设置border边框。(因为外层有border的话，他们两个显然不是紧贴在一起的，如果不希望看到边框，可以将border的颜色设置为背景颜色)
+        2.给父盒子加 overflow:hidden
+    */
+    .avatar{
+        position: absolute;
+        left:10px;
+        top:10px;
+        width: 80px;
+        height: 80px;
+        border:1px solid $lineColor;
+    }
+    .doctorInfo {
+        margin-top:10px;
+        margin-left:95px;
+    }
+    .name{
+        font-size: 15px;
+        font-weight: bold;
+    }
+    .title,.hospital{
+        color:$grayColor;
+        font-size: 13px;
+    }
+
+    .recommended{
+        margin-top:10px;
+        p {
+            color:$grayColor;
+            font-size: 14px;
+            margin: 5px 10px 0 10px;
+            .score {
+                color:red;
+                font-weight: bold;
+            }
+            .jian{
+                display: inline-block;
+                width: 18px;
+                height: 18px;
+                line-height: 18px;
+                font-size: 14px;
+                text-align: center;
+                background: red;
+                color: white;
+            }
+            .effect {
+               span {
+                color:red
+               }
+            }
+            .satisfy{
+                float: right;
+                margin-right: 10px;
+                span {
+                    color:red;
+                }
+            }
+            .consultPrice{
+                color:red;
+            }
+            .tuwen {
+                width: 15px;
+                height: 12px;
+            }
+            .phoneConsultIcon{
+                width: 13px;
+                height: 14px;
+                margin-left:20%;
+            }
+        }
+        p.goodAt{
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+        margin-bottom: 10px;
+    }
+
+}

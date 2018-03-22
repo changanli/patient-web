@@ -3,112 +3,34 @@
 <div><input type="search" placeholder="疾病 医生 科室 医院"></div>
 <!-- 按照疾病和医院查找 -->
 <div class="category">
-    <div>
+    <div class="disease">
         <img src="<%=require('../../images/icon/胶囊.png')%>" alt="">
         <p class="title">按疾病找</p>
-        <p class="desc">1890种疾病</p>
+        <p class="desc"></p>
     </div>
-    <div>
+    <div class="hospital">
         <img src="<%=require('../../images/icon/救护车.png')%>" alt="">
         <p class="title">按医院找</p>
-        <p class="desc">5445家医院</p>
+        <p class="desc"></p>
     </div>
 </div>
+<!-- 按科室分类-->
+<% for(var i = 0;i<faculty.length;i++){%>
+<div class="department">
+    <div class="nav">
+        <img src=<%=icons[i]%> alt="">
+        <span class="title"><%=faculty[i].name%></span>
+        <span class="desc">(<%=faculty[i].doctorCount%>位医生)</span>
+    </div>
+    <div class="depart-category">
+        <% for(var j = 0; j<faculty[i].secondList.length;j++){%>
+            <div class="depart" data-section='<%=i%>' data-row='<%=j%>' ><%=faculty[i].secondList[j].name%></div>
+        <%}%>
+        <div>更多></div>
+    </div>
+</div>
+<% } %>
 
-<!-- 按照科室分类 -->
-<!-- 内科 -->
-<div class="department">
-    <div class="nav">
-        <img src="<%=require('../../images/icon/急救箱.png')%>" alt="">
-        <span class="title">内科</span>
-        <span class="desc">(114315位医生)</span>
-    </div>
-    <div class="depart-category">
-        <div>心血管内科</div>
-        <div>神经内科</div>
-        <div>消化内科</div>
-        <div>内分泌科</div>
-        <div>免疫科</div>
-        <div>呼吸科</div>
-        <div>肾病内科</div>
-        <div>更多></div>
-    </div>
-</div>
-<!-- 外科 -->
-<div class="department">
-    <div class="nav">
-        <img src="<%=require('../../images/icon/医生.png')%>" alt="">
-        <span class="title">外科</span>
-        <span class="desc">(81727位医生)</span>
-    </div>
-    <div class="depart-category">
-        <div>神经外科</div>
-        <div>功能神外科</div>
-        <div>心血管外科</div>
-        <div>胸外科</div>
-        <div>整形科</div>
-        <div>乳腺外科</div>
-        <div>泌尿外科</div>
-        <div>更多></div>
-    </div>
-</div>
-
-<!-- 妇产科 -->
-<div class="department">
-    <div class="nav">
-        <img src="<%=require('../../images/icon/危险药品.png')%>" alt="">
-        <span class="title">妇产科</span>
-        <span class="desc">(36243位医生)</span>
-    </div>
-    <div class="depart-category">
-        <div>神经外科</div>
-        <div>功能神外科</div>
-        <div>心血管外科</div>
-        <div>胸外科</div>
-        <div>整形科</div>
-        <div>乳腺外科</div>
-        <div>泌尿外科</div>
-        <div>更多></div>
-    </div>
-</div>
-
-<!-- 儿科学 -->
-<div class="department">
-    <div class="nav">
-        <img src="<%=require('../../images/icon/听筒.png')%>" alt="">
-        <span class="title">儿科学</span>
-        <span class="desc">(36148位医生)</span>
-    </div>
-    <div class="depart-category">
-        <div>儿科</div>
-        <div>新生儿科</div>
-        <div>小儿呼吸科</div>
-        <div>小儿消化科</div>
-        <div>儿童保健科</div>
-        <div>小儿神内科</div>
-        <div>小儿心内科</div>
-        <div>更多></div>
-    </div>
-</div>
-
-<!-- 骨外科 -->
-<div class="department">
-    <div class="nav">
-        <img src="<%=require('../../images/icon/心率.png')%>" alt="">
-        <span class="title">骨外科</span>
-        <span class="desc">(29969位医生)</span>
-    </div>
-    <div class="depart-category">
-        <div>骨科</div>
-        <div>脊柱外科</div>
-        <div>手外科</div>
-        <div>创伤骨科</div>
-        <div>骨关节科</div>
-        <div>矫形外科</div>
-        <div>骨质疏松科</div>
-        <div>更多></div>
-    </div>
-</div>
 <div class="weui-tabbar">
     <a href="#home" class="weui-tabbar__item">
         <span style="display: inline-block;position: relative;">

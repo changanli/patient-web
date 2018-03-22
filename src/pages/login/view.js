@@ -88,10 +88,14 @@ var Login = Backbone.View.extend({
     },
     register(){
         //编码两次，在接收处解码一次，可以解决接受到乱码的问题
+        // 如果传递参数有中文，不进行encodeURI编码的话，路由会被调用两次，一次传递过去的是
+		// 正常汉字，一次传递过来的是编码之后的字符 
         appRouter.navigate(`register?title=${encodeURI(encodeURI("注册"))}`,{trigger:true})
     },
     forgetPwd(){
          //编码两次，在接收处解码一次，可以解决接受到乱码的问题
+         // 如果传递参数有中文，不进行encodeURI编码的话，路由会被调用两次，一次传递过去的是
+		// 正常汉字，一次传递过来的是编码之后的字符 
          appRouter.navigate(`register?title=${encodeURI(encodeURI("忘记密码"))}`,{trigger:true})
     }
 });

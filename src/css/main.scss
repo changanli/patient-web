@@ -16,34 +16,38 @@
     }
 }
 
-
-.navigation  {
+.container {
     width: 100%;
     height: 44px;
-    background-color:$themeColor;
-    position: relative;
-    .back {
-        display: inline-block;
-        width: 40px;
+    .navigation  {
+        width: 100%;
         height: 44px;
-        line-height: 44px;
-        color:white;
-        font-size: 20px;
-        margin-left:10px;
-        background: url("../images/back.png") no-repeat center;
-        background-size: 10px 18px;
-
-    }
-    .title {
-       $titleWidth:120px;
-       position: absolute;
-       left:50%;
-       width: $titleWidth;
-       height: 44px;
-       line-height: 44px;
-       margin-left:-$titleWidth/2;
-       text-align: center;
-       color:white;
-       font-size: 20px;
+        background-color:$themeColor;
+        position: fixed;
+        z-index: 999;
+        .back {
+            display: inline-block;
+            width: 40px;
+            height: 44px;
+            line-height: 44px;
+            color:white;
+            font-size: 20px;
+            margin-left:10px;
+            background: url("../images/back.png") no-repeat center;
+            background-size: 10px 18px;
+    
+        }
+        .title {
+           $titleWidth:120px;
+           position: absolute;
+           left:50%;
+           width: $titleWidth;
+           height: 44px;
+           line-height: 44px;
+           margin-left:-$titleWidth/2;
+           text-align: center;
+           color:white;
+           font-size: 20px;
+        }
     }
 }

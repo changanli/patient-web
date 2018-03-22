@@ -7,9 +7,10 @@
     background-color: $themeColor;
     position: relative;
     padding-top:40px;
-    .info {
+    .userInfo {
         $imgWidth:50px;
         position: relative;
+        height: $imgWidth;
         img {
             width: $imgWidth;
             height: $imgWidth;

@@ -12,6 +12,7 @@ export const router_object = {
     'index': 'index',
     'home': 'home', //首页
     'doctor' : 'doctor', //医生
+    'doctorList':'doctorList', //医生列表
     'knowledge' : 'knowledge', //知识
     'mine' : 'mine', //个人中心
     'login': 'login', //登录
@@ -37,6 +38,11 @@ export const routes = {
     },
     doctor(params){
         import('@/pages/doctor/controller').then(controller=>{
+            CommonController(controller,params)
+        })
+    },
+    doctorList(params){
+        import('@/pages/doctorList/controller').then(controller=>{
             CommonController(controller,params)
         })
     },

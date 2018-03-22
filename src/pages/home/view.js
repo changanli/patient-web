@@ -28,6 +28,7 @@ var Home = Backbone.View.extend({
 			console.log(error);
 		})
 		this.scroll()
+		
 	},
 	render() {
 		this.$el.html(html({banners:this.banners}))
