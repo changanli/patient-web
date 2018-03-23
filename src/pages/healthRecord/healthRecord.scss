@@ -1,0 +1,74 @@
+@import '../../css/base.scss';
+@import '../../css/function.scss';
+
+// 没有添加健康档案
+.tip {
+    text-align: center;
+    img {
+        margin-top:100px;
+    }
+    p {
+        margin-top: 10px;
+        color: $grayColor;
+    }
+    button{
+        margin-top:10px;
+        font-size: 18px;
+        color:white;
+        background-color: $themeColor;
+        width: 150px;
+        height: 40px;
+        line-height: 40px;
+        border-radius: 20px;
+        outline-style: none; //去掉默认样式
+        border: none; //去掉默认样式
+    }
+}
+
+// 添加健康档案
+.chooseSex{
+    .sex-label {
+        position: relative;
+        .sexChecked{
+            position: absolute;
+            width: 50px;
+            height: 25px;
+            left:0; 
+            opacity: 0;
+            outline: none;
+            border: none;
+        }
+    }
+   
+}
+
+.healthRecord{
+    
+    .health-info{
+        background-color: white;
+        position: relative;
+        width: 100%;
+        height: 80px;
+        padding-left:70px;
+        overflow: hidden;
+        img{
+            position: absolute;
+            left:10px;
+            top:10px;
+            width: 50px;
+            height: 50px;
+            border-radius: 25px;
+            border: 1px solid $themeColor;
+        }
+        .name-line{
+            margin-top:15px;
+            .relation{
+                margin-left:10px;
+            }
+        }
+        .age-line{
+            font-size: 13px;
+            color: $grayColor;
+        }
+    }
+}

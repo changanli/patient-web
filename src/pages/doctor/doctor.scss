@@ -99,10 +99,14 @@
             width: 25%;
             height: 50px;
             line-height: 50px;
-            font-size: 16px;
+            font-size: 15px;
             text-align: center;
             border-right: 1px solid $lineColor;
             border-bottom: 1px solid $lineColor;
+            //单行显示
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
         }
     }
 }

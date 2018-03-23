@@ -21,23 +21,44 @@
  
 }
 
-.fanhui {
-    display: inline-block;
-    width: 40px;
+.changeName-navigation {
+    background-color: $themeColor;
     height: 44px;
-    line-height: 44px;
-    color:white;
-    font-size: 20px;
-    margin-left:10px;
-    background: url("../../images/back.png") no-repeat center;
-    background-size: 10px 18px;
+    position: relative;
+    .fanhui {
+        display: inline-block;
+        width: 40px;
+        height: 44px;
+        line-height: 44px;
+        color:white;
+        font-size: 20px;
+        margin-left:10px;
+        background: url("../../images/back.png") no-repeat center;
+        background-size: 10px 18px;
+    }
+    .title {
+        $width:120px;
+        $height:20px;
+        position: absolute;
+        color: white;
+        width: $width;
+        height: $height;
+        line-height:$height;
+        font-size: 18px;
+        text-align: center;
+        top:50%;
+        margin-top:-$height/2;
+        left:50%;
+        margin-left:-$width/2;
+    }
+    .done {
+        position: absolute;
+        width: 40px;
+        height: 44px;
+        line-height: 44px;
+        color:white;
+        font-size: 20px;
+        right:10px;
+    }
 }
-.done {
-    position: absolute;
-    width: 40px;
-    height: 44px;
-    line-height: 44px;
-    color:white;
-    font-size: 20px;
-    right:10px;
-}
+

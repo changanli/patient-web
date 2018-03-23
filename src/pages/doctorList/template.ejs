@@ -1,6 +1,6 @@
 <div>
     <%for(var i = 0; i<doctors.length;i++){%>
-    <div class="info">
+    <div class="info" data-doctorId='<%=doctors[i].doctorId%>'>
         <img class="avatar" src="" alt="" style="background:url('<%=doctors[i].logoUrl%>') no-repeat center;background-size:contain">
         <div class="doctorInfo">
             <p class="name"><%=doctors[i].name%></p>

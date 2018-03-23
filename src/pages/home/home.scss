@@ -280,7 +280,7 @@ $border-line:1px $lineColor solid;
     margin-top:10px;
     width: 100%;
     height: 200px;
-    .nav {
+    .hot-nav {
       @include nav
     } 
     .category {
@@ -311,7 +311,7 @@ $border-line:1px $lineColor solid;
 .goodArticle {
     margin-top:10px;
     background-color: white;
-    .nav {
+    .goodArticle-nav {
         @include nav
     }
     .content{

@@ -12,7 +12,7 @@ var Doctor = Backbone.View.extend({
 	el: '#app',
 
 	events: {
-        
+        'click #depart' : 'gotoDoctorList'
 	},
 
 	initialize() {
@@ -21,18 +21,6 @@ var Doctor = Backbone.View.extend({
 			this.render(faculty);
 			$('.disease .desc').html(res.data.disease);
 			$('.hospital .desc').html(res.data.hospital);
-			$('.depart').on('click',function(){
-				
-				//h5自定义属性，用来确定section和row
-				const section = $(this).attr('data-section');
-				const row = $(this).attr('data-row');
-				const title = faculty[section].secondList[row].name;
-				const secondFacultyId = faculty[section].secondList[row].secondFacultyId
-				// 如果传递参数有中文，不进行encodeURI编码的话，路由会被调用两次，一次传递过去的是
-				// 正常汉字，一次传递过来的是编码之后的字符 
-				//编码两次，在接收处解码一次，可以解决接受到乱码的问题
-				appRouter.navigate(`doctorList?title=${encodeURI(encodeURI(title))}&secondFacultyId=${secondFacultyId}`,{trigger:true});
-			})
 		}).catch(error=>{
 			console.log(error);
 		})
@@ -49,6 +37,17 @@ var Doctor = Backbone.View.extend({
 			require('../../images/icon/点滴.png'),
 			require('../../images/icon/温度计.png')]
 		this.$el.html(html({faculty,icons}))
+	},
+	gotoDoctorList(){
+		//h5自定义属性，用来确定section和row
+		const section = $(this).attr('data-section');
+		const row = $(this).attr('data-row');
+		const title = faculty[section].secondList[row].name;
+		const secondFacultyId = faculty[section].secondList[row].secondFacultyId
+		// 如果传递参数有中文，不进行encodeURI编码的话，路由会被调用两次，一次传递过去的是
+		// 正常汉字，一次传递过来的是编码之后的字符 
+		//编码两次，在接收处解码一次，可以解决接受到乱码的问题
+		appRouter.navigate(`doctorList?title=${encodeURI(encodeURI(title))}&secondFacultyId=${secondFacultyId}`,{trigger:true});
 	}
 });
 

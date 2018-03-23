@@ -22,7 +22,6 @@ var DoctorList = Backbone.View.extend({
 
 	initialize(params) {
 		//编码两次，在接收处解码一次，可以解决接受到乱码的问题
-		
 		let secondFacultyId = query('secondFacultyId');
 		fetch.get('/pv1/doctorList',{params:{
 			secondFacultyId
@@ -40,6 +39,10 @@ var DoctorList = Backbone.View.extend({
 
 	render(title,doctors) {
 		this.$el.html(navigation({title})+html({doctors}))
+		$('.info').on('click',function(){
+			const doctorId = $('.info').attr('data-doctorId');
+			appRouter.navigate(`doctorDetail?doctorId=${doctorId}`,{trigger:true});
+		});
 	},
 	back(){
 		appRouter.navigate('doctor',{trigger:true});
