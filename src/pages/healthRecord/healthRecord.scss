@@ -26,24 +26,38 @@
 }
 
 // 添加健康档案
-.chooseSex{
-    .sex-label {
-        position: relative;
-        .sexChecked{
-            position: absolute;
-            width: 50px;
-            height: 25px;
-            left:0; 
-            opacity: 0;
-            outline: none;
-            border: none;
+.addReport {
+    .chooseSex{
+        .sex-label {
+            position: relative;
+            .sexChecked{
+                position: absolute;
+                width: 50px;
+                height: 25px;
+                left:0; 
+                opacity: 0;
+                outline: none;
+                border: none;
+            }
         }
+      
     }
-   
+}
+.commitPatient {
+    display: block;
+    width: 80%;
+    height: 40px;
+    background-color: $themeColor;
+    color:white;
+    margin:20px auto;
+    font-size: 20px;
+    border-radius: 20px;
+    outline-style: none;
+    border: none;
 }
 
 .healthRecord{
-    
+    width: 100%;
     .health-info{
         background-color: white;
         position: relative;
@@ -51,17 +65,19 @@
         height: 80px;
         padding-left:70px;
         overflow: hidden;
-        img{
+        .avatar{
+            $imgWidth:50px;
             position: absolute;
             left:10px;
-            top:10px;
-            width: 50px;
-            height: 50px;
-            border-radius: 25px;
+            top:50%;
+            margin-top:-$imgWidth/2;
+            width: $imgWidth;
+            height: $imgWidth;
+            border-radius: $imgWidth/2;
             border: 1px solid $themeColor;
         }
         .name-line{
-            margin-top:15px;
+            margin-top:20px;
             .relation{
                 margin-left:10px;
             }
@@ -70,5 +86,20 @@
             font-size: 13px;
             color: $grayColor;
         }
+        .age{
+            margin-left:10px;
+        }
+        .arrow {
+            position: absolute;
+            background:url('../../images/XYJT.png') no-repeat center;
+            width: 15px;
+            height: 22px;
+            top:50%;
+            margin-top:-11px;
+            right: 10px;
+        }
+    }
+    .weui-tab__panel{
+        width: 100%;
     }
 }

@@ -1,23 +1,24 @@
-<div class="page__bd healthRecord" style="height: 100%;">
+<div class="page__bd healthRecord" style="height: 100%;" id="healthRecord">
     <div class="health-info">
-        <img src="<%=require('../../../images/icon/医生.png')%>" alt="">
-        <p class="name-line"><span class="name">李长安</span><span class="relation">(自己)</span></p>
-        <p class="age-line"><span class="sex">男</span><span class="age">2天</span></p>
+        <img class="avatar" src="<%=require('../../../images/icon/医生.png')%>" alt="">
+        <p class="name-line"><span class="name"><%=data.name%></span><span class="relation">(<%=data.relation%>)</span></p>
+        <p class="age-line"><span class="sex"><%=data.sex%></span><span class="age"><%=data.age%></span></p>
+       <span class="arrow"></span>
     </div>
     <div class="weui-tab">
         <div class="weui-navbar">
-            <div class="weui-navbar__item weui-bar__item_on">
+            <div class="weui-navbar__item weui-bar__item_on" data-id="health-infomation">
                 个人资料
             </div>
-            <div class="weui-navbar__item">
+            <div class="weui-navbar__item" data-id="health-habit">
                 生活习惯
             </div>
-            <div class="weui-navbar__item">
+            <div class="weui-navbar__item" data-id="medicalRecord">
                 专属病历
             </div>
         </div>
         <div class="weui-tab__panel">
-            <!-- <div class="health-infomation">
+            <div class="health-infomation weui-tab__panel_item" id="health-infomation">
                     <div class="weui-cells">
                             <div class="weui-cell" id="chooseHeight">
                                 <div class="weui-cell__bd">
@@ -46,8 +47,8 @@
                             <div class="weui-cell__ft" id="sensitive">请选择</div>
                         </div>
                     </div>
-            </div> -->
-            <div class="health-habit">
+            </div>
+            <div class="health-habit weui-tab__panel_item" style="display:none;" id="health-habit">
                     <div class="weui-cells">
                             <div class="weui-cell" id="isSmoking">
                                 <div class="weui-cell__bd">
@@ -86,6 +87,26 @@
                                     <div class="weui-cell__ft" id="3">请选择</div>
                             </div>
                     </div>
+            </div>
+            <div id="medicalRecord" class="medicalRecord" style="display:none">
+                <div class="weui-cells">
+                    <a class="weui-cell weui-cell_access" href="javascript:;">
+                        <div class="weui-cell__bd">
+                            <p>孕产信息</p>
+                        </div>
+                        <div class="weui-cell__ft">
+                        </div>
+                    </a>
+                    <a class="weui-cell weui-cell_access" href="javascript:;">
+                        <div class="weui-cell__bd">
+                            <p>健康历史</p>
+                        </div>
+                        <div class="weui-cell__ft">
+                        </div>
+                    </a>
+                </div>
+                <div class="weui-cells__title">我的病程</div>
+                <div class="bingcheng"></div>
             </div>
         </div>
     </div>

@@ -12,7 +12,7 @@ var DoctorDetail = Backbone.View.extend({
 	el: '#app',
 
 	events: {
-		
+		'click .back':'back'
 	},
 
 	initialize() {
@@ -23,6 +23,9 @@ var DoctorDetail = Backbone.View.extend({
 
 	render() {
 		this.$el.html(html())
+	},
+	back(){
+		// appRouter.navigate('doctorList',{trigger:true});
 	}
 });
 

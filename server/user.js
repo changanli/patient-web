@@ -171,12 +171,5 @@ Router.post('/resetPassword',function(req,res){
     })
  });
  
- Router.get('/delete',function(req,res){
-    User.remove({},function(err,doc){
-        if(!err){
-            return res.json({resultCode:0,msg:"删除成功"})
-        }
-    });
 
-})
 module.exports = Router;

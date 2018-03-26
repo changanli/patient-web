@@ -60,6 +60,15 @@ const models = {
             'isConsult' : {type:String},
             'isShowPlatformCharge' : {type:String}
         }],
+    },
+    patient:{
+        'userId':{type:String},
+        'name':{type:String},
+        'avatar':{type:String},
+        'relation':{type:String},
+        'birthday':{type:String},
+        'sex':{type:String},
+        'phone':{type:String}
     }
 };
 

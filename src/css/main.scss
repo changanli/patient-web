@@ -1,9 +1,11 @@
 @import './base.scss';
 @import './function.scss';
 
-
+html, body {
+    height: 100%;
+}
 #app {
-    margin-bottom:66px;
+    height: 100%;
 }
 /********************************页面部分********************************/
 .page-index{

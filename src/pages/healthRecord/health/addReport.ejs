@@ -1,4 +1,4 @@
-<div class="" style="background-color:white;margin-top:10px;">
+<div class="addReport" style="background-color:white;margin-top:10px;" id="addReport">
     <div class="weui-cell" id="addRelation">
         <div class="weui-cell__bd">
             <p>与您的关系</p>
@@ -10,7 +10,7 @@
             <p>姓名</p>
         </div>
         <div class="weui-cell__ft">
-            <input class="weui-input" type="text" placeholder="请输入姓名" style="text-align:right;">
+            <input class="weui-input" id="name" type="text" placeholder="请输入姓名" style="text-align:right;">
         </div>
     </div>
     <div class="weui-cell chooseSex">
@@ -20,7 +20,7 @@
         <div class="weui-cell__ft">
             <label class="sex-label" for="male">
                     <i class="weui-icon-success" id="male-icon"></i>男
-                    <input type="radio" class="sexChecked" name="sex" id="male">
+                    <input type="radio" class="sexChecked" name="sex" id="male" checked="checked">
             </label>
 
             <label class="sex-label" for="female">
@@ -42,7 +42,9 @@
             <p>手机号码</p>
         </div>
         <div class="weui-cell__ft">
-            <input class="weui-input" type="tel" maxlength="11" placeholder="请填写" style="text-align:right;">
+            <input id="phone" class="weui-input" type="tel" maxlength="11" placeholder="请填写" style="text-align:right;">
         </div>
     </div>
 </div>
+
+<button type='submit' id="commit" class="commitPatient">提交</button>

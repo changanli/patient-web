@@ -17,7 +17,8 @@ var DoctorList = Backbone.View.extend({
 	el: '#app',
 
 	events: {
-		'click .back': 'back'
+		'click .back': 'back',
+		'click .doctor_info' : 'doctorDetail'
 	},
 
 	initialize(params) {
@@ -39,13 +40,14 @@ var DoctorList = Backbone.View.extend({
 
 	render(title,doctors) {
 		this.$el.html(navigation({title})+html({doctors}))
-		$('.info').on('click',function(){
-			const doctorId = $('.info').attr('data-doctorId');
-			appRouter.navigate(`doctorDetail?doctorId=${doctorId}`,{trigger:true});
-		});
 	},
 	back(){
 		appRouter.navigate('doctor',{trigger:true});
+	},
+	doctorDetail(e){
+		const doctorId = $(e.target).attr('data-doctorId');
+		console.log(doctorId);
+		appRouter.navigate(`doctorDetail?doctorId=${doctorId}`,{trigger:true});
 	}
 });
 

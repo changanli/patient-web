@@ -13,6 +13,7 @@ const io = require('socket.io')(server);
 const model = require('./model');
 const User = model.getModel('user');
 const Doctor = model.getModel('doctor');
+const Patient = model.getModel('patient');
 const upload = multer({dest:'./uploads'}) //定义图片上传时的临时目录
 //使用中间件
 app.use(cookieParser());
@@ -85,7 +86,7 @@ app.get('/pv1/doctorList',function(req,res){
         }
     }
 })
-
+// 获取首页
 app.get('/pv1/home',function(req,res){
     const {userId} = req.query;
     const accessToken = req.header('accessToken')
@@ -107,6 +108,54 @@ app.get('/pv1/home',function(req,res){
         
     })
    
+})
+
+//获取患者信息
+app.get('/pv1/patient_profile',function(req,res){
+    const {userId} = req.query;
+
+    Patient.find({userId},function(err,doc){
+        if(err){
+            res.status(500).json('服务器内部错误');
+        }
+        
+        return res.status(200).json(doc);
+    })
+});
+//更新患者信息
+app.post('/pv1/updatePatient',function(req,res){
+    const {userId,_id,relation,name,sex,birthday,phone} = req.body;
+    Patient.findOneAndUpdate({userId,_id},{relation,name,sex,birthday,phone},function(err,doc){
+        if(err){
+            return res.status(500).json('服务器内部错误');
+        }
+       
+        if(!doc){
+            return res.status(400).json('未找到该患者')
+        }
+        return res.status(200).json({code:0})
+    })
+})
+//添加患者信息
+app.post('/pv1/addPatient',function(req,res){
+    const {userId,relation,name,sex,birthday,phone} = req.body;
+    const patient = new Patient({userId,relation,name,sex,birthday,phone});
+    patient.save(function(err,doc){
+        if(err){
+            return res.status(500).json('服务器内部错误');
+        }
+        return res.status(200).json({code:0});
+    })
+});
+
+//
+app.get('/g1/delete',function(req,res){
+    Patient.remove({},function(err,doc){
+        if(!err){
+            return res.json({resultCode:0,msg:"删除成功"})
+        }
+    });
+
 })
 
 
