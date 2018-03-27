@@ -16,31 +16,32 @@ var Mine = Backbone.View.extend({
 		'click .sign' : 'postSign',
 		'click .weui-cell' : 'info',
 		'click #avatar' : 'info',
-		'click .name' : 'info'
+		'click .name' : 'info',
+		'click .weui-cell' : 'detail'
 	},
 
 	initialize() {
 		this.render();
 		this.getUserData();
-		$('.weui-cell').on('click',function(){
-			const tag = $(this).attr('data-tag');
-			const routers = ["personalInformation","healthRecord"]
-			const router = routers[tag];
-			console.log(typeof(router));
-			// 只能用 === 运算来测试某个值是否是未定义的，因为 == 运算符认为 undefined 值等价于 null。
-			if(router === undefined){
-				return;
-			}
-			//或者通过typeof来判断
-			// if(typeof(router) == 'undefined'){
-			// 	return
-			// }
-			appRouter.navigate(routers[tag],{trigger:true})
-		})
 	},
 
 	render() {
 		this.$el.html(html());
+	},
+	detail(e){
+		const tag = $(e.currentTarget).attr('data-tag');
+		const routers = ["personalInformation","healthRecord"]
+		const router = routers[tag];
+		console.log(typeof(router));
+		// 只能用 === 运算来测试某个值是否是未定义的，因为 == 运算符认为 undefined 值等价于 null。
+		if(router === undefined){
+			return;
+		}
+		//或者通过typeof来判断
+		// if(typeof(router) == 'undefined'){
+		// 	return
+		// }
+		appRouter.navigate(routers[tag],{trigger:true})
 	},
 	getUserData(){
 		const {userId} = Store.getState().user;

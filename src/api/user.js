@@ -22,4 +22,4 @@ export const updateUserInfoAxios=(data)=>(
 export const signAxios=(data)=>(
     fetch.post('/user/sign',data)
 )
-    
+

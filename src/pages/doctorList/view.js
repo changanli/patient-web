@@ -11,7 +11,7 @@ import {
 	Loading
 } from '@/components'
 
-import fetch from '@/utils/fetch';
+import {getDoctorList} from '@/redux/actions/doctor';
 
 var DoctorList = Backbone.View.extend({
 	el: '#app',
@@ -22,17 +22,23 @@ var DoctorList = Backbone.View.extend({
 	},
 
 	initialize(params) {
-		//编码两次，在接收处解码一次，可以解决接受到乱码的问题
-		let secondFacultyId = query('secondFacultyId');
-		fetch.get('/pv1/doctorList',{params:{
+	
+		// 编码两次，在接收处解码一次，可以解决接受到乱码的问题
+		// let secondFacultyId = query('secondFacultyId');
+		// const title = decodeURI(query('title'));
+		
+		//这样从医生详情页返回时依然可以获取参数加载医生列表
+		//刷新页面会导致Store被重置,可以选择将secondFacultyId,title存储在本地，然后在加载到Store
+		//然后在显示出来，待实现
+		const {secondFacultyId,title} = Store.getState().doctor;
+		Store.dispatch(getDoctorList({params:{
 			secondFacultyId
-		}}).then(res=>{
-			const doctors = res.data.doctorList;
+		}})).then(res=>{
+			const doctors = res;
 			if(doctors.length === 0){
 				Toast({message:'暂无医生数据,请联系后台添加'});
 			}
-			this.render(decodeURI(query('title')),doctors);
-			console.log(doctors);
+			this.render(title,doctors);
 		}).catch(error=>{
 
 		})
@@ -46,7 +52,6 @@ var DoctorList = Backbone.View.extend({
 	},
 	doctorDetail(e){
 		const doctorId = $(e.target).attr('data-doctorId');
-		console.log(doctorId);
 		appRouter.navigate(`doctorDetail?doctorId=${doctorId}`,{trigger:true});
 	}
 });

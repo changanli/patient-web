@@ -7,6 +7,7 @@ import {
 } from '@/components'
 
 import fetch from '@/utils/fetch';
+import {getDeparts,doctorList} from '@/redux/actions/doctor'
 
 var Doctor = Backbone.View.extend({
 	el: '#app',
@@ -16,12 +17,14 @@ var Doctor = Backbone.View.extend({
 	},
 
 	initialize() {
-		fetch.get('/pv1/department').then(res=>{
-			const faculty = res.data.faculty;
+		const {userId} = Store.getState().user;
+		Store.dispatch(getDeparts({userId})).then(res=>{
+			console.log(res);
+			const faculty = res.faculty;
 			this.faculty = faculty;
 			this.render(faculty);
-			$('.disease .desc').html(res.data.disease);
-			$('.hospital .desc').html(res.data.hospital);
+			$('.disease .desc').html(res.disease);
+			$('.hospital .desc').html(res.hospital);
 		}).catch(error=>{
 			console.log(error);
 		})
@@ -40,16 +43,22 @@ var Doctor = Backbone.View.extend({
 		this.$el.html(html({faculty,icons}))
 	},
 	gotoDoctorList(e){
-		console.log(e)
 		//h5自定义属性，用来确定section和row
 		const section = $(e.currentTarget).attr('data-section');
 		const row = $(e.currentTarget).attr('data-row');
 		const title =this.faculty[section].secondList[row].name;
 		const secondFacultyId = this.faculty[section].secondList[row].secondFacultyId
+		//通过redux暂时保存title和secondFacultyId,下一页请求使用
+		Store.dispatch(doctorList({title,secondFacultyId}));
 		// 如果传递参数有中文，不进行encodeURI编码的话，路由会被调用两次，一次传递过去的是
 		// 正常汉字，一次传递过来的是编码之后的字符 
 		//编码两次，在接收处解码一次，可以解决接受到乱码的问题
-		appRouter.navigate(`doctorList?title=${encodeURI(encodeURI(title))}&secondFacultyId=${secondFacultyId}`,{trigger:true});
+		appRouter.navigate('doctorList',{trigger:true});
+
+		/*
+			1.通过url传递参数
+			2.通过redux传递参数
+		*/
 	}
 });
 
