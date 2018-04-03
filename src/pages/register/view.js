@@ -22,6 +22,7 @@ var Register = Backbone.View.extend({
 	initialize() {
 		 //编码两次，在接收处解码一次，可以解决接受到乱码的问题
 		this.title = decodeURI(query('title'));
+		this.type = decodeURI(query('type'));
 		this.count = 60;
 		this.render();
 	},
@@ -30,7 +31,13 @@ var Register = Backbone.View.extend({
 	  $('.tip').css('display',(this.title === '注册') ? 'block' : 'none')	
 	},
 	back(){
-		appRouter.navigate('login', {trigger:true});
+		if(this.type == 1){
+			//返回设置页面
+			appRouter.navigate('settings', {trigger:true});
+		}else{
+			appRouter.navigate('login', {trigger:true});
+		}
+		
 	},
 	protocol(){
 		appRouter.navigate(`iframe?title=${encodeURI(encodeURI('用户协议'))}&uri=/static/userProtocol.html&backRouter=register?title=${encodeURI(encodeURI('注册'))}`,{trigger:true,replace:true});

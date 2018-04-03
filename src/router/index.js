@@ -20,6 +20,8 @@ export const router_object = {
     'mine' : 'mine', //个人中心
     'personalInformation':'personalInformation', //个人信息
     'healthRecord' : 'healthRecord', //健康档案
+    'settings' : 'settings', //设置与帮助
+    'feedback' : 'feedback', //意见反馈
     'iframe' : 'iframe',
     '*actions': 'login'
 }
@@ -80,6 +82,16 @@ export const routes = {
     },
     healthRecord(params){
         import('@/pages/healthRecord/controller').then(controller=>{
+            CommonController(controller,params)
+        })
+    },
+    settings(params){
+        import('@/pages/settings/controller').then(controller=>{
+            CommonController(controller,params)
+        })
+    },
+    feedback(params){
+        import('@/pages/feedback/controller').then(controller=>{
             CommonController(controller,params)
         })
     },

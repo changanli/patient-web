@@ -8,6 +8,7 @@ import {
 
 import fetch from '@/utils/fetch';
 import {getUserInfo,sign} from '@/redux/actions/user';
+import {setupWebViewJavascriptBridge} from '@/utils/index'
 
 var Mine = Backbone.View.extend({
 	el: '#app',
@@ -17,7 +18,8 @@ var Mine = Backbone.View.extend({
 		'click .weui-cell' : 'info',
 		'click #avatar' : 'info',
 		'click .name' : 'info',
-		'click .weui-cell' : 'detail'
+		'click .weui-cell' : 'detail',
+		'click #recommend' : 'recommend'
 	},
 
 	initialize() {
@@ -30,18 +32,18 @@ var Mine = Backbone.View.extend({
 	},
 	detail(e){
 		const tag = $(e.currentTarget).attr('data-tag');
-		const routers = ["personalInformation","healthRecord"]
+		const routers = ["personalInformation","healthRecord",'undefined','undefined',"settings",'undefined','feedback']
 		const router = routers[tag];
-		console.log(typeof(router));
 		// 只能用 === 运算来测试某个值是否是未定义的，因为 == 运算符认为 undefined 值等价于 null。
-		if(router === undefined){
+		if(router === undefined || router === 'undefined'){
 			return;
 		}
+		console.log(router);
 		//或者通过typeof来判断
 		// if(typeof(router) == 'undefined'){
 		// 	return
 		// }
-		appRouter.navigate(routers[tag],{trigger:true})
+		appRouter.navigate(router,{trigger:true,replace:true})
 	},
 	getUserData(){
 		const {userId} = Store.getState().user;
@@ -77,6 +79,15 @@ var Mine = Backbone.View.extend({
 		$('.sign').prop('disabled',isSign ? 'disabled' : '');
 		$('.sign').html(isSign ? '已签到' : '每日签到');
 		$('.sign').css('backgroundColor',isSign ? 'red' : 'orange');
+	},
+	recommend(){
+		//与iOS原生进行交互的方法
+		setupWebViewJavascriptBridge(function(bridge) {
+			bridge.callHandler('share', {"test":'测试原生与js的交互'}, function(response) {
+				console.log(response)
+			})
+		})
+	
 	}
 });
 
