@@ -60,7 +60,7 @@ app.get('/pv1/saveDoctorData',function(req,res){
 
     const json = require('./static/doctorList.json');
     // model.update({},{$set:{node:node}},{multi:true});
-    for(let i = 0; i<json.length;i++){
+    for(var i = 0; i<json.length;i++){
         const doctorModel = new Doctor(json[i]);
         doctorModel.update({},{$set:doctorModel},{multi:true},function(err,doc){
             

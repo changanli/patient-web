@@ -42,9 +42,7 @@ var Home = Backbone.View.extend({
 			  el: '.swiper-pagination',
 			  clickable: true
 			},
-			autoplay:{
-			  stopOnLastSlide:true
-			}
+			autoplay:3000
 		  });
 		  $('.swiper-slide').on('click',function(){
 			//正则去掉首尾``字符

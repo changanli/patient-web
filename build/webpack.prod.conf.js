@@ -65,7 +65,8 @@ module.exports = merge(baseWebpackConfig, {
             }
         }),
         new ExtractTextPlugin({
-            filename: 'css/[name].[contenthash:8].css',
+            filename: '[name].[contenthash:8].css',
+            // filename: 'css/[name].[contenthash:8].css',
             allChunks: true, // 模块中提取css
         }),
         new OptimizeCSSPlugin({
