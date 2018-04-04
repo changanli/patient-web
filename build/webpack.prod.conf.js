@@ -53,7 +53,7 @@ module.exports = merge(baseWebpackConfig, {
         }),
         // 清空打包文件
         new CleanWebpackPlugin(['dist'], {
-            root: path.resolve(__dirname, '../'),
+            root: path.resolve(__dirname, '../server/'),
             verbose: true,
             dry: false,
         }),

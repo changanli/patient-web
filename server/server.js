@@ -22,28 +22,32 @@ app.use('/user',userRouter);
 app.use(function(req,res,next){
     if(req.url.startsWith('/user/')
     || req.url.startsWith("/g1/")
-    || req.url.startsWith("/d1/")){
-        return next();
-    }
-    if(req.url.startsWith('/pv1/')){
+    || req.url.startsWith("/d1/")
+    || req.url.startsWith('/pv1/')){
         return next();
     }
     if(req.url.startsWith('/static/')||req.url.startsWith('/uploads/')){
         const str = '.'+String(req.path)
         return res.sendFile(path.resolve(str));
     }
-    
-    return res.sendFile(path.resolve('build/index.html'));
+    if(req.path != "/"){
+        const str = './dist'+String(req.path)
+        return res.sendFile(path.resolve(str));
+    }
+    return res.sendFile(path.resolve('./dist/index.html'));
 })
-app.use('/',express.static(path.resolve('build')));
+app.use('/',express.static(path.resolve('static')));
 
 app.post('/pv1/upload',upload.single('upfile'),function(req,res,next){
-    const newFilePath = 'uploads/'+ Date.parse(new Date()) + req.file.originalname
+    const imageName = Date.parse(new Date()) + req.file.originalname
+    //图片存储到服务器的/data/uploads/目录下
+    const newFilePath = '/data/uploads/'+ imageName
     fs.rename(req.file.path,newFilePath,function(err){
         if(err){
             return res.status(500).json('服务器内部错误');
         }
-        return res.status(200).json({code:0,'img':newFilePath});
+        //检测到upload服务器nginx会将图片映射到/data/uploads/目录下
+        return res.status(200).json({code:0,'img':'upload/'+imageName});
     })
    
     // req.file 是 `avatar` 文件的信息
