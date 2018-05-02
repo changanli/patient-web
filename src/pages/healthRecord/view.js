@@ -208,7 +208,8 @@ var HealthRecord = Backbone.View.extend({
 			onConfirm: function (result) {
 				const date = `${result[0].value}-${result[1].value}-${result[2].value}`;
 				$('#date').html(date);
-			}
+			},
+			id:'date'
 		});
 	},
 	chooseRelations(){
@@ -235,7 +236,9 @@ var HealthRecord = Backbone.View.extend({
 			onConfirm: function (result) {
 				console.log(result[0].label);
 				$('#relation').html(result[0].label);
-			}
+			},
+			defaultValue:[0],
+			id:'relation'
 		});
 	},
 	chooseSex(){
@@ -260,8 +263,11 @@ var HealthRecord = Backbone.View.extend({
 			},
 			onConfirm: function (result) {
 				$('#height').html(result[0].label);
-			}
+			},
+			defaultValue:[150],
+			id: 'height'
 		});
+	
 	},
 	chooseWeight(){
 		let weights = []
@@ -274,7 +280,9 @@ var HealthRecord = Backbone.View.extend({
 			},
 			onConfirm: function (result) {
 				$('#weight').html(result[0].label);
-			}
+			},
+			defaultValue:[75],
+			id: 'weight'
 		});
 	},
 	isMarried(){
@@ -288,7 +296,9 @@ var HealthRecord = Backbone.View.extend({
 			},
 			onConfirm: function (result) {
 				$('#marry').html(result[0].label);
-			}
+			},
+			defaultValue:[0],
+			id:'marry'
 		});
 	},
 	isSensitiveHistory(){
@@ -299,7 +309,9 @@ var HealthRecord = Backbone.View.extend({
 			},
 			onConfirm: function (result) {
 				$('#sensitive').html(result[0].label);
-			}
+			},
+			defaultValue:[1],
+			id:'sensitive'
 		});
 	},
 	isSmoking(){
@@ -310,7 +322,9 @@ var HealthRecord = Backbone.View.extend({
 			},
 			onConfirm: function (result) {
 				$('#smoke').html(result[0].label);
-			}
+			},
+			defaultValue:[1],
+			id:'smoke'
 		});
 	},
 	isDrinking(){
@@ -321,7 +335,9 @@ var HealthRecord = Backbone.View.extend({
 			},
 			onConfirm: function (result) {
 				$('#drink').html(result[0].label);
-			}
+			},
+			defaultValue:[0],
+			id:'drink'
 		});
 	},
 	lifeIsNormal(that){
@@ -334,7 +350,9 @@ var HealthRecord = Backbone.View.extend({
 			},
 			onConfirm: function (result) {
 				$(`#${tag}`).html(result[0].label)
-			}
+			},
+			defaultValue:[0],
+			id:`${tag}`
 		});
 	}
 

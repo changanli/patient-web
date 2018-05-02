@@ -1,6 +1,14 @@
 # 截图
 ## 登录注册修改密码
 ![image](https://github.com/changanli/patient-web/blob/master/login.gif?raw=true)
+## 健康档案
+![image](https://github.com/changanli/patient-web/blob/master/healthRecord.gif?raw=true)
+
+## 我的
+![image](https://github.com/changanli/patient-web/blob/master/mine.gif?raw=true)
+
+## 医生列表
+![image](https://github.com/changanli/patient-web/blob/master/doctor.gif?raw=true)
 
 # 技术:
 ## 后台:nodejs Express mongodb

@@ -40,14 +40,14 @@ app.use('/',express.static(path.resolve('static')));
 
 app.post('/pv1/upload',upload.single('upfile'),function(req,res,next){
     const imageName = Date.parse(new Date()) + req.file.originalname
-    //图片存储到服务器的/data/uploads/目录下
-    const newFilePath = '/data/uploads/'+ imageName
+    //图片存储到服务器的./uploads/目录下
+    const newFilePath = './uploads/'+ imageName
     fs.rename(req.file.path,newFilePath,function(err){
         if(err){
+            console.log(err)
             return res.status(500).json('服务器内部错误');
         }
-        //检测到upload服务器nginx会将图片映射到/data/uploads/目录下
-        return res.status(200).json({code:0,'img':'upload/'+imageName});
+        return res.status(200).json({code:0,'img':newFilePath});
     })
    
     // req.file 是 `avatar` 文件的信息
@@ -156,9 +156,14 @@ app.post('/pv1/addPatient',function(req,res){
 app.get('/g1/delete',function(req,res){
     Patient.remove({},function(err,doc){
         if(!err){
-            return res.json({resultCode:0,msg:"删除成功"})
+            User.remove({},function(err,doc){
+                if(!err){
+                    return res.json({resultCode:0,msg:"删除成功"})
+                }
+            })
         }
     });
+   
 
 })
 

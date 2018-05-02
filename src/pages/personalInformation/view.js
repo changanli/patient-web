@@ -96,12 +96,12 @@ var Index = Backbone.View.extend({
 					Toast('请上传图片');
 					return false; // 阻止文件添加
 				}
-				if (this.size > 10 * 1024 * 1024) {
-					Toast('请上传不超过10M的图片');
+				if (this.size > 1 * 1024 * 1024) {
+					Toast('请上传不超过1M的图片');
 					return false;
 				}
-				if (files.length > 5) { // 防止一下子选择过多文件
-					Toast('最多只能上传5张图片，请重新选择');
+				if (files.length > 1) { // 防止一下子选择过多文件
+					// Toast('最多只能上传1张图片，请重新选择');
 					return false;
 				}
 
