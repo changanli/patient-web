@@ -2,12 +2,18 @@ import * as auth from '@/utils/auth'
 import * as types from '../mutation-types';
 import {
     local,
-    localRemove
+    localRemove,
 } from '@/utils'
 
-const USER_PHONE = 'USER_PHONE'
-const USER_ACCESSTOKEN = 'USER_ACCESSTOKEN'
-const USER_ID = 'USER_ID'
+import {
+    USER_PHONE,
+    USER_ACCESSTOKEN,
+    USER_ID,
+    REMEMBERPWD,
+    PASSWORD
+} from '@/utils/const.js'
+
+
 
 /*
     刷新浏览器页面后,store会被重置。
@@ -33,6 +39,7 @@ export default function userInfo(state = initState(), action) {
                 accessToken,
                 userId
             } = action.data
+            console.log(action.data)
             local(USER_PHONE, phone)
             local(USER_ID,userId)
             accessToken && auth.setToken(accessToken) // cookies缓存token
@@ -51,12 +58,18 @@ export default function userInfo(state = initState(), action) {
             const {phone,accessToken,userId} = action.data;
             local(USER_PHONE, phone)
             local(USER_ID,userId)
+            localRemove(PASSWORD)
             accessToken && auth.setToken(accessToken) // cookies缓存token
             return initState()
         }
         case types.USER_LOGIN_OUT:
-            localRemove(USER_PHONE)
+            if (!local(REMEMBERPWD)) 
+            {
+                localRemove(USER_PHONE)
+                localRemove(PASSWORD)
+            }
             localRemove(USER_ID)
+           
             auth.removeToken()
             return initState();
         case types.USER_INFO:

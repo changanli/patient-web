@@ -51,9 +51,9 @@ module.exports = merge(baseWebpackConfig, {
             filename: '[name].css'
         }), // 分离css
 
-        // html入口
+        // 生成一个html入口文件
         new HtmlWebpackPlugin({
-            filename: './index.html',
+            filename: './index.html', 
             template: './src/template/index.html',
         }),
         new FriendlyErrorsPlugin()

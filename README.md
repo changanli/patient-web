@@ -1,3 +1,7 @@
+#截图
+## 登录注册修改密码
+![image](https://github.com/changanli/patient-web.git/blob/master/login.gif?raw=true)
+
 # 技术:
 ## 后台:nodejs Express mongodb
 ## 前端:backbone redux ejs scss 

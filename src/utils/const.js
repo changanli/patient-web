@@ -1,0 +1,5 @@
+export const USER_PHONE = 'USER_PHONE'
+export const USER_ACCESSTOKEN = 'USER_ACCESSTOKEN'
+export const USER_ID = 'USER_ID'
+export const REMEMBERPWD =  'REMEMBERPWD'
+export const PASSWORD = 'PASSWORD'

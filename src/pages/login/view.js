@@ -2,8 +2,14 @@ import html from './template.ejs'
 
 import {
     local,
-    localRemove
+    localRemove,
 } from '@/utils'
+
+import {
+    REMEMBERPWD,
+    USER_PHONE,
+    PASSWORD
+} from '@/utils/const.js'
 
 import {signIn} from '@/redux/actions/user';
 
@@ -28,12 +34,13 @@ var Login = Backbone.View.extend({
 	},
 
 	render() {
-        this.isRememberPwd = local('rememberPwd')
+        this.isRememberPwd = local(REMEMBERPWD)
         this.$el.html(html())
-        let phone = local('phone');
+        let phone = local(USER_PHONE);
+        console.log(`手机号:${phone}`)
         $("input[type=tel]").val(phone);
         if(this.isRememberPwd){
-            let password = local('password');
+            let password = local(PASSWORD);
             $("input[type=password]").val(password);
             $(".selected-icon").addClass("selected");
         }
@@ -41,10 +48,10 @@ var Login = Backbone.View.extend({
     selected(){
         $(".selected-icon").toggleClass("selected");
         this.isRememberPwd = !this.isRememberPwd;
-        local('rememberPwd',this.isRememberPwd)
+        local(REMEMBERPWD,this.isRememberPwd)
         //如果不记住密码，则删除密码
         if(this.isRememberPwd === false) {
-            localRemove('password')
+            localRemove(PASSWORD)
         }
     },
     clear(){
@@ -59,10 +66,9 @@ var Login = Backbone.View.extend({
 
         Store.dispatch(signIn({phone,password})).then(res=>{
             if(this.isRememberPwd){
-                local('password',password)
-                local('phone',phone)
+                local(PASSWORD,password)
             }else{
-                localRemove('password')
+                localRemove(PASSWORD)
             }
             appRouter.navigate('home',true);
         }).catch(error=>{

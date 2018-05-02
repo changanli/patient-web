@@ -5,3 +5,4 @@ export const USER_RESET_PASSWORD = 'USER_RESET_PASSWORD';
 export const USER_INFO = 'USER_INFO';
 export const DEPART = 'DEPART';
 export const DOCTOR_LIST = 'DOCTOR_LIST';
+
