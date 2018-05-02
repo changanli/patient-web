@@ -1,6 +1,6 @@
 # 截图
 ## 登录注册修改密码
-![image](https://github.com/changanli/patient-web.git/blob/login.gif?raw=true)
+![image](https://github.com/changanli/patient-web/blob/master/login.gif?raw=true)
 
 # 技术:
 ## 后台:nodejs Express mongodb
